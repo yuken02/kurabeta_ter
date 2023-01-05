@@ -1,24 +1,47 @@
-# README
+# 比べたter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+Twitterの投稿を検索しグラフとして表示できるSNS分析サイトです。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+Twitterに投稿されたツイートをワード検索し、指定期間内の検索ヒット数をグラフとして表示することができます。
+検索したワードはタグを付けて保存でき、保存したワードはタグごとに１つのグラフで見比べることができます。
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+プログラミング言語をTwitterで調べる時にそれぞれの言語別で情報量の違いや、その時々のトレンドを調べた際にぱっと見で分かりづらいなと感じていました。
+比べたいワードを折れ線グラフでその推移を表示できるようになれば見やすく便利だなと思いこのテーマを選びました。
 
-* Database initialization
+似たサービスにYahoo!検索のリアルタイム検索などがありますが、このサイトでは複数のワードを1つのグラフで見比べることができます。
 
-* How to run the test suite
+### ターゲットユーザー
 
-* Services (job queues, cache servers, search engines, etc.)
+Twitterのキーワードを見比べたい人
 
-* Deployment instructions
+### 主な利用シーン
 
-* ...
+気になるワードの投稿数を比較する時
+
+## 設計書
+
+## 開発環境
+
+- Ruby 3.1.2
+- Rails 6.1.7
+
+## 使用Gem
+
+- twitter
+- dotenv-rails
+- device
+- omniauth-twitter
+
+## 使用素材
+
+> 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+> 
+
+> 使用しない場合は、使用素材の項目をREADMEから削除してください。
+>
