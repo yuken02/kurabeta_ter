@@ -1,0 +1,2 @@
+class Tab < ApplicationRecord
+end
