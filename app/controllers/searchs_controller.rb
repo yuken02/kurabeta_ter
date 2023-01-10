@@ -5,9 +5,10 @@ class SearchsController < ApplicationController
     require 'uri'
     require 'net/http'
 
-    keyword = URI.encode_www_form_component(params[:keyword])
+    @keyword = params[:keyword]
+    enc_keyword = URI.encode_www_form_component(@keyword)
     bearer_token = ENV['BEARER_TOKEN']
-    uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{keyword}&granularity=hour")
+    uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keyword}&granularity=day")
     http = Net::HTTP.new(uri.host, uri.port)
 
     http.use_ssl = true

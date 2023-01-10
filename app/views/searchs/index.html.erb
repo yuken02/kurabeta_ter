@@ -11,11 +11,11 @@
   </div>
   <div class="row">
     <div class="col-md-10 tweet_count">
-      <% if @tweets.present? %>
-        <h2>検索結果</h2>
+      <% if @keyword.present? %>
+        <h2 class="my-2">検索結果: <%= @keyword %></h2>
         <%= @tweets %>
       <% else %>
-        検索結果が空です
+        キーワードを検索してください。
       <% end %>
     </div>
   </div>
