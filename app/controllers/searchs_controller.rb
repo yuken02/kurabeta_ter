@@ -18,6 +18,6 @@ class SearchsController < ApplicationController
     req["Authorization"] = "bearer #{bearer_token}"
 
     res = http.request(req)
-    @tweets = res.body
+    @tweets = JSON.parse(res.body)
   end
 end

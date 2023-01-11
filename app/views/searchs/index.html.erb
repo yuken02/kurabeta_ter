@@ -13,10 +13,58 @@
     <div class="col-md-10 tweet_count">
       <% if @keyword.present? %>
         <h2 class="my-2">検索結果: <%= @keyword %></h2>
+        <p><%= puts @tweets.meta.value %> 件</p>
         <%= @tweets %>
+
+        <div>
+          <canvas id="weekChart"></canvas>
+
+          <script>
+            var ctx = document.getElementById("weekChart");
+            var weekChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+                datasets: [
+                  {
+                    label: 'ツイート数',
+                    data: [
+                      36463,
+                      61044,
+                      57685,
+                      64084,
+                      61180,
+                      37406,
+                      117744,
+                      118856
+                    ],
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0,0,0,0)'
+                  },
+                ],
+              },
+              options: {
+                title: {
+                  dispray: true,
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      suggestedMax: 150000,
+                      suggestedMin: 0,
+                      stepSize: 5000,
+                    }
+                  }]
+                },
+              }
+            });
+          </script>
+        </div>
+
       <% else %>
         キーワードを検索してください。
       <% end %>
     </div>
   </div>
 </div>
+

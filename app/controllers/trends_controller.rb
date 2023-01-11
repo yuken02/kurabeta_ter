@@ -8,7 +8,19 @@ class TrendsController < ApplicationController
       config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
     end
 
-    @i = 0
+    # @rank = for i in 1..30 do
+    #   i += 1
+    # end
+
+    # @rank = (1..30).each{|i|
+    #   puts i.to_s
+    # }
+
+    @rank = 1..30
+    # @rank.each do |i|
+    #   i
+    # end
+
     @trends = client.trends(id = 23424856).attrs[:trends].first(30)
     # @trends = get_trends.each do |trend|
     #     name = trend[:name]
