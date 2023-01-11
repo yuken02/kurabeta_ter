@@ -18,6 +18,28 @@ class SearchsController < ApplicationController
     req["Authorization"] = "bearer #{bearer_token}"
 
     res = http.request(req)
+    # @tweets = res.body
     @tweets = JSON.parse(res.body)
+    @tweet_count = @tweets['data'].length
   end
 end
+
+# Object.keys([要素数を知りたいJSON]).length
+
+# 36463,
+#                       61044,
+#                       57685,
+#                       64084,
+#                       61180,
+#                       37406,
+#                       117744,
+#                       118856
+
+# var json_count = <%= @tweets.['data'].length %>;
+
+# <% @tweets.each_with_index do |tweet, i| %>
+#   <%= @tweets['data'][i-1]['tweet_count'] %>
+#   <%= @tweets['data'] %>
+# <% end %>
+
+# var json_count = Object.keys(<%= @tweets.['data']).length);

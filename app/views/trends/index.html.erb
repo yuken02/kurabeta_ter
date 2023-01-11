@@ -9,6 +9,7 @@
       <% end %>
     </div>
   </div>
+
   <div class="row">
     <h2 class="my-2">トレンドランキング</h2>
     <table class="table table-hover table-inverse">
@@ -18,18 +19,23 @@
             <td>
                 <%= i+1 %>.
             </td>
-            <td class="col-md-6"><a href="<%= trend[:url] %>" class="col-md-2"><%= trend[:name] %></td>
-            <td><%= trend[:tweet_volume] %> <% if trend[:tweet_volume] %>件のツイート<% end %></td>
+            <td class="col-md-6">
+              <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
+            </td>
+            <td>
+              <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+</div>
 
+<!-- 確認 -->
     <a href="<%= @trends[0][:url] %>"><%= @trends[0][:name] %></a><br><span><%= @trends[0][:tweet_volume] %>件のツイート</span><span><br></span>
     <a href="<%= @trends[2][:url] %>"><%= @trends[2][:name] %></a><span><%= @trends[2][:tweet_volume] %></span><br>
     <!--.to_s(:delimited)-->
     <%= @trends %>
-</div>
               <% @rank.each do |i| %>
               <% end %>

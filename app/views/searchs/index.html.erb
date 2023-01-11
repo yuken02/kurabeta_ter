@@ -10,17 +10,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-10 tweet_count">
+    <div class="col-md-9 tweet_chart">
       <% if @keyword.present? %>
         <h2 class="my-2">検索結果: <%= @keyword %></h2>
-        <p><%= puts @tweets.meta.value %> 件</p>
-        <%= @tweets %>
+
+
 
         <div>
           <canvas id="weekChart"></canvas>
 
           <script>
             var ctx = document.getElementById("weekChart");
+
             var weekChart = new Chart(ctx, {
               type: 'line',
               data: {
@@ -29,14 +30,9 @@
                   {
                     label: 'ツイート数',
                     data: [
-                      36463,
-                      61044,
-                      57685,
-                      64084,
-                      61180,
-                      37406,
-                      117744,
-                      118856
+                      <% @tweet_count.times do |i| %>
+                        <%= @tweets['data'][i-1]['tweet_count'] %>,
+                      <% end %>
                     ],
                     borderColor: 'blue',
                     backgroundColor: 'rgba(0,0,0,0)'
@@ -61,9 +57,25 @@
           </script>
         </div>
 
+        <%= @tweets %>
+
       <% else %>
         キーワードを検索してください。
       <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <ul class="tab-list list-unstyled">
+        <li class="tab tab-active">
+          タブ1
+        </li>
+        <li class="tab">
+          タブ2
+        </li>
+        <li class="tab">
+          タブ3
+        </li>
+      </ul>
     </div>
   </div>
 </div>
