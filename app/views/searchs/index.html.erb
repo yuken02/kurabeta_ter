@@ -13,8 +13,19 @@
     <div class="col-md-9 tweet_chart">
       <% if @keyword.present? %>
         <h2 class="my-2">検索結果: <%= @keyword %></h2>
+        １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
 
+        <p></p>
+        <% @tweets.each do |tweet| %>
+          <%= tweet[0,3] %>
+        <% end %>
 
+        <p></p>
+        <p>ツイートカウント</p>
+        <% @tweet_count.times do |i| %>
+          <%= @tweets['data'][i]['tweet_count'] %>,
+        <% end %>
+        <%= @tweet_count %>
 
         <div>
           <canvas id="weekChart"></canvas>
@@ -25,13 +36,13 @@
             var weekChart = new Chart(ctx, {
               type: 'line',
               data: {
-                labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+                labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
                 datasets: [
                   {
                     label: 'ツイート数',
                     data: [
                       <% @tweet_count.times do |i| %>
-                        <%= @tweets['data'][i-1]['tweet_count'] %>,
+                        <%= @tweets['data'][i]['tweet_count'] %>,
                       <% end %>
                     ],
                     borderColor: 'blue',
@@ -46,9 +57,9 @@
                 scales: {
                   yAxes: [{
                     ticks: {
-                      suggestedMax: 150000,
+                      suggestedMax: 100000,
                       suggestedMin: 0,
-                      stepSize: 5000,
+                      stepSize: 10000,
                     }
                   }]
                 },
