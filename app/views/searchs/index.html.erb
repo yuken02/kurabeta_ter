@@ -14,19 +14,6 @@
       <% if @keyword.present? %>
         <h2 class="my-2">検索結果: <%= @keyword %></h2>
         １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
-
-        <p></p>
-        <% @tweets.each do |tweet| %>
-          <%= tweet[0,3] %>
-        <% end %>
-
-        <p></p>
-        <p>ツイートカウント</p>
-        <% @tweet_count.times do |i| %>
-          <%= @tweets['data'][i]['tweet_count'] %>,
-        <% end %>
-        <%= @tweet_count %>
-
         <div>
           <canvas id="weekChart"></canvas>
 
@@ -68,7 +55,22 @@
           </script>
         </div>
 
+
+        <!-- memo -->
         <%= @tweets %>
+
+        <p></p>
+        <% @tweets.each do |tweet| %>
+          <%= @tweets['data'][0] %>
+        <% end %>
+
+        <p></p>
+        <p>ツイートカウント</p>
+        <% @tweet_count.times do |i| %>
+          <%= @tweets['data'][i]['tweet_count'] %>,
+        <% end %>
+        <%= @tweet_count %>
+        <%= @tweets.find_all{|y| y == ['tweet_count']} %>
 
       <% else %>
         キーワードを検索してください。
@@ -90,4 +92,6 @@
     </div>
   </div>
 </div>
+
+
 
