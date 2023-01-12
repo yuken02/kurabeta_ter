@@ -15,7 +15,16 @@
     <%= render 'layouts/header' %>
 
     <main>
-      <p id="notice"><%= notice %></p>
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert">
+          <i class="fas fa-check-circle"></i><apan class="ml-2"><%= notice %></apan>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-triangle"></i><apan class="ml-2"><%= alert %></apan>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

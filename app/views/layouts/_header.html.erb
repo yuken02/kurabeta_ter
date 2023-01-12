@@ -9,16 +9,18 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li>
-              <i class="fas fa-sign-out-alt"></i> Log out
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+            <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
               <i class="fas fa-user-plus"></i> 新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+            <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
               <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>
