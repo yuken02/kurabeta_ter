@@ -1,10 +1,12 @@
 class SearchsController < ApplicationController
 
   def index
+    ### 検索機能
     require 'json'
     require 'uri'
     require 'net/http'
 
+    ## HTTPリクエスト
     @keyword = params[:keyword]
     enc_keyword = URI.encode_www_form_component(@keyword)
     bearer_token = ENV['BEARER_TOKEN']
@@ -17,12 +19,42 @@ class SearchsController < ApplicationController
     req = Net::HTTP::Get.new(uri.request_uri)
     req["Authorization"] = "bearer #{bearer_token}"
 
+    ## JSON => ハッシュ
     res = http.request(req)
     @tweets = JSON.parse(res.body)
     if @tweets.include?('data')
       @tweet_count = @tweets['data'].length
     end
+
+    ### タブ
+    # if Tab.exists?(user_id: [current_user.id])
+    #   @tab = Tab.find(current_user.id)
+    # end
+    @tab = ['a','b']
+
+    ### キーワード
   end
+
+  def create_tab
+  end
+
+  def update_tab
+  end
+
+  def create_keyword
+    @word = Keyword.new(word_params)
+  end
+
+  def update_keyword
+  end
+
+
+  private
+
+  def word_params
+    params.require(:keyword).permit(:word, :tag_id)
+  end
+
 end
 
 # Object.keys([要素数を知りたいJSON]).length
