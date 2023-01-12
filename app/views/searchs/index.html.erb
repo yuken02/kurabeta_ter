@@ -1,58 +1,15 @@
 <div class="container">
-  <div class="row my-3">
-    <a href="/trends" class="btn btn-info rounded-pill d-flex align-items-center mr-3"><span>トレンド</span></a>
-    <a href="/searchs" class="btn btn-info rounded-pill d-flex align-items-center ml-3"><span>気になるワード<span></span></a>
-    <div class="ml-md-5">
-      <%= form_with url: "/searchs",method: :get do |form| %>
-        <%= form.text_field :keyword %>
-        <button title="検索" type="submit">検索</button>
-      <% end %>
-    </div>
+  <div class="row my-3 justify-content-center">
+    <%= render 'layouts/main_head' %>
   </div>
+
   <div class="row">
     <div class="col-md-9 tweet_chart">
       <% if @keyword.present? %>
         <h2 class="my-2">検索結果: <%= @keyword %></h2>
         １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
         <div>
-          <canvas id="weekChart"></canvas>
-
-          <script>
-            var ctx = document.getElementById("weekChart");
-
-            var weekChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
-                datasets: [
-                  {
-                    label: 'ツイート数',
-                    data: [
-                      <% @tweet_count.times do |i| %>
-                        <%= @tweets['data'][i]['tweet_count'] %>,
-                      <% end %>
-                    ],
-                    borderColor: 'blue',
-                    backgroundColor: 'rgba(0,0,0,0)'
-                  },
-                ],
-              },
-              options: {
-                title: {
-                  dispray: true,
-                },
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      suggestedMax: 100000,
-                      suggestedMin: 0,
-                      stepSize: 10000,
-                    }
-                  }]
-                },
-              }
-            });
-          </script>
+          <%= render 'chart' %>
         </div>
 
 
@@ -78,17 +35,7 @@
     </div>
 
     <div class="col-md-3">
-      <ul class="tab-list list-unstyled">
-        <li class="tab tab-active">
-          タブ1
-        </li>
-        <li class="tab">
-          タブ2
-        </li>
-        <li class="tab">
-          タブ3
-        </li>
-      </ul>
+      <%= render 'tab' %>
     </div>
   </div>
 </div>

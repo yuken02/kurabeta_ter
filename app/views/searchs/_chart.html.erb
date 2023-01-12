@@ -1,0 +1,38 @@
+<canvas id="weekChart"></canvas>
+
+<script>
+  var ctx = document.getElementById("weekChart");
+
+  var weekChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+      datasets: [
+        {
+          label: 'ツイート数',
+          data: [
+            <% @tweet_count.times do |i| %>
+              <%= @tweets['data'][i]['tweet_count'] %>,
+            <% end %>
+          ],
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0,0,0,0)'
+        },
+      ],
+    },
+    options: {
+      title: {
+        dispray: true,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 100000,
+            suggestedMin: 0,
+            stepSize: 10000,
+          }
+        }]
+      },
+    }
+  });
+</script>
