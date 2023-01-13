@@ -1,30 +1,35 @@
-<div class="wrapper">
-  <div class="tab_container">
-    <p>タブ名</p>
-    <% if @tab %>
-      <% @tab.each do |tab| %>
-        <div>
-          <%= tab.name %>
-          「id: <%= tab.id %>」
-        </div>
-      <% end %>
+<div class="tab_box">
+  <div class="btn_area">
+    <% @tab.each_with_index do |tab, i| %>
+      <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name%></p>
     <% end %>
   </div>
-  <div class="word_container">
-    <%= render 'word' %>
+  <div class="panel_area">
+    <% @tab.each_with_index do |tab, i| %>
+      <div class="tab_panel <% if i == 0 %>active<% end %>">
+        <% @word.each do |word| %>
+          <% if word.tab_id == tab.id %>
+            <p class="tab_panel"><%= word.word %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
-  <div class="form-group">
-    <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
-  </div>
+<% if @tab_count <= 3 %>
+  <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= form_with model: @word_new, class: 'row' do |f| %>
+  <!-- ここにtab_idを指定するコード -->
   <div class="form-group">
     <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
   </div>
@@ -33,3 +38,20 @@
   </div>
 <% end %>
 
+
+<!-- 確認用メモ -->
+<p>↓↓メモ</p>
+<div class="tab_container">
+  <p>タブ名</p>
+  <% if @tab %>
+    <% @tab.each do |tab| %>
+      <div>
+        <%= tab.name %>
+        「id: <%= tab.id %>」
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="word_container">
+  <%= render 'word' %>
+</div>

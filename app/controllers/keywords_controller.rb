@@ -1,8 +1,9 @@
 class KeywordsController < ApplicationController
 
   def create
+    Tab.tab_check
     @word_new = Keyword.new(word_params)
-    @word_new.tab_id = 1
+    @word_new.tab_id = 2
     if @word_new.save
       redirect_to search_path, notice: "キーワードを登録しました"
     else
@@ -16,6 +17,13 @@ class KeywordsController < ApplicationController
 
 
   private
+  # model
+  def self.tab_check
+    find_or_create_by!(user_id: current_user.id) do |tab|
+      tab.name = 'タブ1'
+      tab.user_id = current_user.id
+    end
+  end
 
   def word_params
     params.require(:keyword).permit(:word, :tab_id)

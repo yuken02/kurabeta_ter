@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'tabs/create'
   devise_for :users, controllers: {
    registrations: 'users/registrations',
-   sessions:      'users/sessions',
+   sessions: 'users/sessions'
 }
 
   root to: 'homes#top'

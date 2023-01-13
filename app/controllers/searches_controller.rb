@@ -31,6 +31,7 @@ class SearchesController < ApplicationController
     if Tab.exists?(user_id: [current_user.id])
       @tab = Tab.where(user_id: current_user.id)
     end
+    @tab_count = @tab.count
 
         #link_to searchs_path(tab_id: tab.id) do %> #viewメモ
         #end %>
