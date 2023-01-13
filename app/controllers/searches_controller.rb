@@ -1,4 +1,4 @@
-class SearchsController < ApplicationController
+class SearchesController < ApplicationController
 
   def index
     ### 検索機能
@@ -27,32 +27,17 @@ class SearchsController < ApplicationController
     end
 
     ### タブ
+    @tab_new = Tab.new
+    @tab = Tab.all
     # if Tab.exists?(user_id: [current_user.id])
     #   @tab = Tab.find(current_user.id)
     # end
-    @tab = ['a','b']
+
+        #link_to searchs_path(tab_id: tab.id) do %> #viewメモ
+        #end %>
 
     ### キーワード
-  end
-
-  def create_tab
-  end
-
-  def update_tab
-  end
-
-  def create_keyword
-    @word = Keyword.new(word_params)
-  end
-
-  def update_keyword
-  end
-
-
-  private
-
-  def word_params
-    params.require(:keyword).permit(:word, :tag_id)
+    @word = [1,2,3]
   end
 
 end
