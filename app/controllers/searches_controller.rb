@@ -28,16 +28,19 @@ class SearchesController < ApplicationController
 
     ### タブ
     @tab_new = Tab.new
-    @tab = Tab.all
-    # if Tab.exists?(user_id: [current_user.id])
-    #   @tab = Tab.find(current_user.id)
-    # end
+    if Tab.exists?(user_id: [current_user.id])
+      @tab = Tab.where(user_id: current_user.id)
+    end
 
         #link_to searchs_path(tab_id: tab.id) do %> #viewメモ
         #end %>
 
-    ### キーワード
-    @word = [1,2,3]
+    ### 登録ワード
+    @word_new = Keyword.new
+    @word = Keyword.all
+    # if Keyword.exists?(tab_id: [@tab.id])
+    #   @word = Keyword.find(@tab.id)
+    # end
   end
 
 end

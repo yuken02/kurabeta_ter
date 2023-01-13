@@ -1,0 +1,9 @@
+<p>キーワード</p>
+<% if @word %>
+  <% @word.each do |word| %>
+    <div>
+      <%= word.word %>
+      「タブid: <%= word.tab_id %>」
+    </div>
+  <% end %>
+<% end %>

@@ -1,23 +1,17 @@
-<div class="tab-wrapper">
-  <% if @tab %>
-    <% @tab.each do |tab| %>
-      <div>
-        <%= tab %>
-      </div>
+<div class="wrapper">
+  <div class="tab_container">
+    <p>タブ名</p>
+    <% if @tab %>
+      <% @tab.each do |tab| %>
+        <div>
+          <%= tab.name %>
+          「id: <%= tab.id %>」
+        </div>
+      <% end %>
     <% end %>
-    <ul class="tab-list list-unstyled row">
-      <li class="tab tab-active">タブ1</li>
-      <li class="tab">タブ2</li>
-      <li class="tab">タブ3</li>
-    </ul>
-  <% end %>
-
-  <div class="">
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-    </ul>
+  </div>
+  <div class="word_container">
+    <%= render 'word' %>
   </div>
 </div>
 
