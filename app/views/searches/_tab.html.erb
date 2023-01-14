@@ -12,7 +12,7 @@
           <% @word.each do |word| %>
             <% if word.tab_id == tab.id %>
                 <div>
-                  <%= f.check_box :word, {multiple: true}, word.word %>
+                  <%= f.check_box :word, {multiple: true}, word.word, class: "select" %>
                   <%= f.label :word, word.word %>
                 </div>
             <% end %>
@@ -77,5 +77,6 @@
   	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
   	$(this).addClass('active');
   	$('.tab_box .tab_panel').eq(index).addClass('active');
+  	$("input[name='word[]']").prop('checked', false);  //タブクリックでチェック解除
   });
 </script>
