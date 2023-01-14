@@ -34,10 +34,11 @@
       <% end %>
     </div>
 
-    <div class="sidebar col-md-3">
-
-      <%= render 'tab' %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="sidebar col-md-3">
+        <%= render 'tab' %>
+      </div>
+    <% end %>
   </div>
 </div>
 

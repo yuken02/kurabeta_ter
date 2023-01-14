@@ -26,22 +26,30 @@ class SearchesController < ApplicationController
       @tweet_count = @tweets['data'].length
     end
 
-    ### タブ
-    @tab_new = Tab.new
-    if Tab.exists?(user_id: [current_user.id])
-      @tab = Tab.where(user_id: current_user.id)
+    ### ログイン時
+    if user_signed_in?
+      ## タブ
+      @tab_new = Tab.new
+      if Tab.exists?(user_id: [current_user.id])
+        @tab = Tab.where(user_id: current_user.id)
+      end
+      @tab_count = @tab.count
+
+      ## 登録ワード
+      @word_new = Keyword.new
+      # @word = Keyword.all
+      if Keyword.exists?(tab_id: [@tab.first])
+        @word = Keyword.where(tab_id: [
+          @tab.each do |t|
+            t.id
+          end
+        ])
+      end
+
+      ## 比較
+      # @comparison = params[:keywords]
+      # @keywords = params[:keywords]
     end
-    @tab_count = @tab.count
-
-        #link_to searchs_path(tab_id: tab.id) do %> #viewメモ
-        #end %>
-
-    ### 登録ワード
-    @word_new = Keyword.new
-    @word = Keyword.all
-    # if Keyword.exists?(tab_id: [@tab.id])
-    #   @word = Keyword.find(@tab.id)
-    # end
   end
 
 end

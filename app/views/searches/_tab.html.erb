@@ -1,42 +1,61 @@
-<div class="tab_box">
+<div class="tab_box my-2">
   <div class="btn_area">
     <% @tab.each_with_index do |tab, i| %>
       <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name%></p>
     <% end %>
   </div>
+
   <div class="panel_area">
     <% @tab.each_with_index do |tab, i| %>
       <div class="tab_panel <% if i == 0 %>active<% end %>">
-        <% @word.each do |word| %>
-          <% if word.tab_id == tab.id %>
-            <p class="tab_panel"><%= word.word %></p>
+        <% @word.each do |keyword| %>
+          <% if keyword.tab_id == tab.id %>
+            <div class="field mb-1">
+              <p class=""><%= keyword.word %></p>
+            </div>
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
-</div>
 
-<% if @tab_count <= 3 %>
-  <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
-    <div class="form-group">
-      <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
-    </div>
-    <div class="form-group">
-      <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
+  <% form_with model: @keywords, local: true do |f| %>
+    <% @word.each do |word| %>
+      <div>
+        <%= f.check_box :(word.word), {multiple: true} %>
+        <%= f.label :(word.word) %>
+      </div>
+    <% end %>
+    <div class="actions mb-4">
+      <%= f.submit "比べる" %>
     </div>
   <% end %>
+</div>
+
+<% if @tab_count < 3 %>
+  <div class="col-12">
+    <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
-<%= form_with model: @word_new, class: 'row' do |f| %>
-  <!-- ここにtab_idを指定するコード -->
-  <div class="form-group">
-    <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
-  </div>
-<% end %>
+<div class="col-12">
+  <%= form_with model: @word_new, class: 'row' do |f| %>
+    <!-- ここにtab_idを指定するコード -->
+    <div class="form-group">
+      <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
+    </div>
+  <% end %>
+</div>
 
 
 <!-- 確認用メモ -->
@@ -55,3 +74,14 @@
 <div class="word_container">
   <%= render 'word' %>
 </div>
+
+
+<!----- jQuery ----->
+<script>
+  $('.tab_box .tab_btn').click(function() {
+  	var index = $('.tab_box .tab_btn').index(this);
+  	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+  	$(this).addClass('active');
+  	$('.tab_box .tab_panel').eq(index).addClass('active');
+  });
+</script>

@@ -2,44 +2,89 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 
-/*tabの形状*/
-.tab{
+/*** タブ機能 ***/
+.tab_box .btn_area {
+	margin:0 10px;
+	display: -webkit-box;
 	display: flex;
-	flex-wrap: wrap;
 }
-.tab li a{
-	display: block;
-	background:#ddd;
-	margin:0 2px;
-	padding:10px 20px;
+
+.tab_box .tab_btn {
+	width: 188px;
+	padding: 8px 0;
+	color: #333;
+	background: #f5f7f8;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
 }
-/*liにactiveクラスがついた時の形状*/
-.tab li.active a{
-	background:#fff;
+
+.tab_box .tab_btn + .tab_btn {
+	margin-left: 8px;
+}
+
+.tab_box .tab_btn:hover {
+	background-color: #dce1e4;
+}
+
+.tab_box .tab_btn.active {
+  background:#07539f;
+  color:#fff;
+}
+
+.tab_box .panel_area {
+  border: solid 1px #e3ebf3;
+  padding: 20px;
+}
+
+.tab_box .tab_panel {
+  display:none;
+}
+
+.tab_box .tab_panel.active {
+  display:block;
 }
 
 
-/*エリアの表示非表示と形状*/
-.area {
-	display: none;/*はじめは非表示*/
-	opacity: 0;/*透過0*/
-	background: #fff;
-	padding:50px 20px;
-}
+// /*tabの形状*/
+// .tab{
+// 	display: flex;
+// 	flex-wrap: wrap;
+// }
+// .tab li a{
+// 	display: block;
+// 	background:#ddd;
+// 	margin:0 2px;
+// 	padding:10px 20px;
+// }
+// /*liにactiveクラスがついた時の形状*/
+// .tab li.active a{
+// 	background:#fff;
+// }
 
-/*areaにis-activeというクラスがついた時の形状*/
-.area.is-active {
-    display: block;/*表示*/
-    animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
 
-@keyframes displayAnime{
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
+// /*エリアの表示非表示と形状*/
+// .area {
+// 	display: none;/*はじめは非表示*/
+// 	opacity: 0;/*透過0*/
+// 	background: #fff;
+// 	padding:50px 20px;
+// }
+
+// /*areaにis-activeというクラスがついた時の形状*/
+// .area.is-active {
+//     display: block;/*表示*/
+//     animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+//     animation-duration: 2s;
+//     animation-fill-mode: forwards;
+// }
+
+// @keyframes displayAnime{
+// 	from {
+// 		opacity: 0;
+// 	}
+// 	to {
+// 		opacity: 1;
+// 	}
+// }
+

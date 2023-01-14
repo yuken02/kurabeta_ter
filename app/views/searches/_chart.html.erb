@@ -9,7 +9,7 @@
       labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
       datasets: [
         {
-          label: 'ツイート数',
+          label: '<%= @keyword %>',
           data: [
             <% @tweet_count.times do |i| %>
               <%= @tweets['data'][i]['tweet_count'] %>,
@@ -18,6 +18,16 @@
           borderColor: 'blue',
           backgroundColor: 'rgba(0,0,0,0)'
         },
+        // ダミーデータ
+        {
+          label: 'ツイート数2',
+          data: [
+            20000,20000,10000,30000,25000,30000,10000,50000
+          ],
+          borderColor: 'red',
+          backgroundColor: 'rgba(0,0,0,0)'
+        },
+        // ここまでダミー
       ],
     },
     options: {
