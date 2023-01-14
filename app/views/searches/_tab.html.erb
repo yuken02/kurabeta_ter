@@ -5,29 +5,23 @@
     <% end %>
   </div>
 
-  <div class="panel_area">
-    <% @tab.each_with_index do |tab, i| %>
-      <div class="tab_panel <% if i == 0 %>active<% end %>">
-        <% @word.each do |keyword| %>
-          <% if keyword.tab_id == tab.id %>
-            <div class="field mb-1">
-              <p class=""><%= keyword.word %></p>
-            </div>
+  <%= form_with url: "/search",method: :get do |f| %>
+    <div class="panel_area mb-2">
+      <% @tab.each_with_index do |tab, i| %>
+        <div class="tab_panel <% if i == 0 %>active<% end %>">
+          <% @word.each do |word| %>
+            <% if word.tab_id == tab.id %>
+                <div>
+                  <%= f.check_box :word, {multiple: true}, word.word %>
+                  <%= f.label :word, word.word %>
+                </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <% form_with model: @keywords, local: true do |f| %>
-    <% @word.each do |word| %>
-      <div>
-        <%= f.check_box :(word.word), {multiple: true} %>
-        <%= f.label :(word.word) %>
-      </div>
-    <% end %>
-    <div class="actions mb-4">
-      <%= f.submit "比べる" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="actions mb-4 d-flex justify-content-center">
+      <%= f.submit "比べる", class: "btn btn-sm btn-info px-md-5" %>
     </div>
   <% end %>
 </div>
@@ -36,7 +30,7 @@
   <div class="col-12">
     <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
       <div class="form-group">
-        <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+        <%= f.text_field :name, placeholder: '新しいタブ', class: 'mr-2' %>
       </div>
       <div class="form-group">
         <%= f.submit '作成', class: 'btn btn-sm btn-info' %>

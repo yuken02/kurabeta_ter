@@ -1,8 +1,8 @@
 <a href="/trends" class="btn btn-info rounded-pill d-flex align-items-center mr-3"><span>トレンド</span></a>
 <a href="/search" class="btn btn-info rounded-pill d-flex align-items-center ml-3"><span>気になるワード<span></span></a>
 <div class="ml-md-5">
-  <%= form_with url: "/search",method: :get do |form| %>
-    <%= form.text_field :keyword %>
+  <%= form_with url: "/search",method: :get do |f| %>
+    <%= f.text_field :keyword %>
     <button title="検索" type="submit">検索</button>
   <% end %>
 </div>

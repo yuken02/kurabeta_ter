@@ -26,7 +26,7 @@ class SearchesController < ApplicationController
       @tweet_count = @tweets['data'].length
     end
 
-    ### ログイン時
+    ### ログイン時ı
     if user_signed_in?
       ## タブ
       @tab_new = Tab.new
@@ -48,7 +48,7 @@ class SearchesController < ApplicationController
 
       ## 比較
       # @comparison = params[:keywords]
-      # @keywords = params[:keywords]
+      @keywords = params[:keywords]
     end
   end
 
