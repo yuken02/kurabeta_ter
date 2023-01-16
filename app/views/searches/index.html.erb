@@ -13,24 +13,35 @@
         </div>
 
 
-        <!-- memo -->
-        <%= @tweets %>
+              <!-- memo -->
+              <%= @tweets %>
 
-        <p></p>
-        <% @tweets.each do |tweet| %>
-          <%= @tweets['data'][0] %>
-        <% end %>
+              <p></p>
+              <% @tweets.each do |tweet| %>
+                <%= @tweets['data'][0] %>
+              <% end %>
 
-        <p></p>
-        <p>ツイートカウント</p>
-        <% @tweet_count.times do |i| %>
-          <%= @tweets['data'][i]['tweet_count'] %>,
-        <% end %>
-        <%= @tweet_count %>
-        <%= @tweets.find_all{|y| y == ['tweet_count']} %>
+              <p></p>
+              <p>ツイートカウント</p>
+              <% @tweet_count.times do |i| %>
+                <%= @tweets['data'][i]['tweet_count'] %>,
+              <% end %>
+              <%= @tweet_count %>
+              <%= @tweets.find_all{|y| y == ['tweet_count']} %>
 
       <% else %>
-        キーワードを検索してください。
+        <% if @comparison %>
+          <h2 class="my-2">検索結果: <% @comparison.each do |k| %>
+              <%= k %>
+            <% end %>
+          </h2>
+          <div>
+            <%= render 'charts' %>
+            <%= @tweets %>
+          </div>
+        <% else %>
+          キーワードを検索してください。
+        <% end %>
       <% end %>
     </div>
 

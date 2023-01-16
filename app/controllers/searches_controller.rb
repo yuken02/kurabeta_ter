@@ -53,8 +53,33 @@ class SearchesController < ApplicationController
       end
 
       ## 比較
-      # @comparison = params[:keywords]
-      @keywords = params[:keywords]
+      @comparison = params[:keywords]
+      if @comparison
+        # @com_l = @comparison.length
+        if @comparison.include?("0")
+          @comparison.delete("0")
+        end
+        comparison = @comparison.each do |c|
+          # byebug
+          enc_keywords = URI.encode_www_form_component(c)
+          binding.pry
+          uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
+          http_s = Net::HTTP.new(uri_s.host, uri_s.port)
+
+          http_s.use_ssl = true
+          http_s.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+          req_s = Net::HTTP::Get.new(uri_s.request_uri)
+          req_s["Authorization"] = "bearer #{bearer_token}"
+
+          res_s = http_s.request(req_s)
+          @tweets = JSON.parse(res_s.body)
+          if @tweets.include?('data')
+            @tweet_count = @tweets['data'].length
+          end
+        end
+      end
+
     end
   end
 
@@ -136,3 +161,5 @@ end
 # <% end %>
 
 # var json_count = Object.keys(<%= @tweets.['data']).length);
+
+# each_with_index の値は0から

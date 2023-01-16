@@ -62,3 +62,4 @@ gem 'dotenv-rails'
 gem 'pry-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'pry-byebug', group: :development
