@@ -59,10 +59,12 @@ class SearchesController < ApplicationController
         if @comparison.include?("0")
           @comparison.delete("0")
         end
-        comparison = @comparison.each do |c|
+        @comp_tws = []
+        # @com_h = @comparison_ar.to_h
+        @comparison.each_with_index do |c,i|
           # byebug
           enc_keywords = URI.encode_www_form_component(c)
-          binding.pry
+          # binding.pry
           uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
           http_s = Net::HTTP.new(uri_s.host, uri_s.port)
 
@@ -74,10 +76,12 @@ class SearchesController < ApplicationController
 
           res_s = http_s.request(req_s)
           @tweets = JSON.parse(res_s.body)
+          @comp_tws << @tweets
+        end
           if @tweets.include?('data')
             @tweet_count = @tweets['data'].length
           end
-        end
+          @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
       end
 
     end
