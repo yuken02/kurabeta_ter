@@ -36,10 +36,18 @@ class SearchesController < ApplicationController
         @tabs = Tab.where(user_id: current_user.id)
         @tabs_count = @tabs.count
         ## activerecord_relationを配列に変換
-        @tabs_h = @tabs.pluck(:name, :id)
         # @tabs_h = @tabs.pluck(:id, :name).to_h
-        # @tabs_h = @tabs.pluck(:id, :name).to_h.invert
+        # ハッシュ...{'1'=>'犬','2'=>'猫','3'=>'犬'}
+        # @tabs_h = @tabs.pluck(:id, :name)
+        # 配列...['1','犬']['2','猫']['3','犬']
+
+        # @tabs_h = @tabs.pluck(:id, :name).to_h.invert　=>　{'犬'=>'1,3','猫'=>'2'}
         # @tabs_h_inv = safe_invert_hash(@tabs_h)
+
+        @tabs_h = @tabs.pluck(:name, :id)
+        # 配列...['犬','1']['猫','2']['犬','1']
+
+        # pluck ... 指定したカラムの値を配列にできる
       end
 
       ## 登録ワード
@@ -55,16 +63,12 @@ class SearchesController < ApplicationController
       ## 比較
       @comparison = params[:keywords]
       if @comparison
-        # @com_l = @comparison.length
         if @comparison.include?("0")
           @comparison.delete("0")
         end
         @comp_tws = []
-        # @com_h = @comparison_ar.to_h
         @comparison.each_with_index do |c,i|
-          # byebug
           enc_keywords = URI.encode_www_form_component(c)
-          # binding.pry
           uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
           http_s = Net::HTTP.new(uri_s.host, uri_s.port)
 
@@ -145,6 +149,8 @@ end
     # orig_hash.to_h
 
 ### メモ ###
+# byebug
+# binding.pry
 
 # Object.keys([要素数を知りたいJSON]).length
 
@@ -167,3 +173,5 @@ end
 # var json_count = Object.keys(<%= @tweets.['data']).length);
 
 # each_with_index の値は0から
+
+# .to_s(:delimited) 小数点

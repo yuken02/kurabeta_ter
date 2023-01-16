@@ -1,13 +1,18 @@
 class TabsController < ApplicationController
 
   def create
-    @tab_new = Tab.new(tab_params)
-    @tab_new.user_id = current_user.id
-    if @tab_new.save
-      redirect_to search_path, notice: "タブを作成しました"
+    @tabs = Tab.where(user_id: current_user.id)
+    if @tabs.count =< 2
+      @tab_new = Tab.new(tab_params)
+      @tab_new.user_id = current_user.id
+      if @tab_new.save
+        redirect_to search_path, notice: "タブを作成しました"
+      else
+        @keyword = params[:keyword]
+        render '/search'
+      end
     else
-      @keyword = params[:keyword]
-      render '/search'
+      redirect_to "/search", notice: "これ以上タブは作れません。"
     end
   end
 

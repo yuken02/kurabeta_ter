@@ -31,10 +31,17 @@
 
       <% else %>
         <% if @comparison %>
-          <h2 class="my-2">検索結果: <% @comparison.each do |k| %>
-              <%= k %>
+          <h2 class="my-2">検索結果: <% @comparison.each_with_index do |c,i| %>
+              <%= c %>
             <% end %>
           </h2>
+          <div>
+            1週間の総ツイート数：
+            <% @comparison.each_with_index do |c,i| %>
+              <%= c %>
+              <%= @comp_tws[i]['meta']['total_tweet_count'] %> 件 /
+            <% end %>
+          </div>
           <div>
             <%= render 'charts' %>
             <%= @comparison_ar %>

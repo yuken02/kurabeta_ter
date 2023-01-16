@@ -17,7 +17,7 @@ class KeywordsController < ApplicationController
   def destroy
     @word = Keyword.find(params[:id])
     @word.destroy
-    redirect_to "/search"
+    redirect_to request.referer
   end
 
 
