@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'search' => 'searches#index'
   resources :trends, only: [:index]
-  resources :tabs, only: [:create, :update]
+  resources :tabs, only: [:create, :edit, :update]
   resources :keywords, only: [:create, :destroy]
 #   post 'keyword' => 'keywords#create', as: 'words'
 

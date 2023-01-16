@@ -11,8 +11,18 @@ class TabsController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @tab = Tab.find(params[:id])
+  end
 
+  def update
+    @tab = Tab.find(params[:id])
+    @tab.user_id = current_user.id
+    if @tab.update(tab_params)
+      redirect_to "/search", notice: "タブの名前を変更しました。"
+    else
+      render "/search"
+    end
   end
 
 

@@ -1,20 +1,25 @@
 <div class="tab_box my-2">
   <div class="btn_area">
-    <% @tab.each_with_index do |tab, i| %>
-      <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name%></p>
+    <% @tabs.each_with_index do |tab, i| %>
+      <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name %></p>
     <% end %>
   </div>
 
   <%= form_with url: "/search",method: :get do |f| %>
     <div class="panel_area mb-2">
-      <% @tab.each_with_index do |tab, i| %>
+      <% @tabs.each_with_index do |tab, i| %>
         <div class="tab_panel <% if i == 0 %>active<% end %>">
           <% @word.each do |word| %>
             <% if word.tab_id == tab.id %>
-                <div>
-                  <%= f.check_box :word, {multiple: true}, word.word, class: "select" %>
-                  <%= f.label :word, word.word %>
-                </div>
+              <table class="table table-sm table-borderless mb-0">
+                <tr>
+                  <td>
+                    <%= f.check_box :word, {multiple: true}, word.word %>
+                    <%= f.label :word, word.word, class: "m-0" %>
+                  </td>
+                  <td><%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1", style: "display:none;" %></td>
+                </tr>
+              </table>
             <% end %>
           <% end %>
         </div>
@@ -26,7 +31,8 @@
   <% end %>
 </div>
 
-<% if @tab_count < 3 %>
+<!-- タブ作成 -->
+<% if @tabs_count < 3 %>
   <div class="col-12">
     <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
       <div class="form-group">
@@ -39,9 +45,12 @@
   </div>
 <% end %>
 
+<!-- キーワード作成 -->
 <div class="col-12">
   <%= form_with model: @word_new, class: 'row' do |f| %>
-    <!-- ここにtab_idを指定するコード -->
+    <div class="form-group">
+      <%= f.select :tab_id, @tabs_h, class: "tab_id " %> に登録
+    </div>
     <div class="form-group">
       <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
     </div>
@@ -52,31 +61,68 @@
 </div>
 
 
-<!-- 確認用メモ -->
-<p>↓↓メモ</p>
-<div class="tab_container">
-  <p>タブ名</p>
-  <% if @tab %>
-    <% @tab.each do |tab| %>
-      <div>
-        <%= tab.name %>
-        「id: <%= tab.id %>」
-      </div>
-    <% end %>
+<!-- 編集 -->
+<div class="edit_btn btn btn-sm btn-secondary px-3 mb-2"><i class="fas fa-cog"></i></div>
+<div class="col-12 slide_tog card" style="display:none;">
+  <%= form_with model: @tab, class: 'row p-2' do |f| %>
+    <div class="form-group mb-1">
+      <%= f.select :id, @tabs_h, class: "tab_id" %> の名前を変更
+    </div>
+    <div class="form-group mb-1">
+      <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+    </div>
+    <div class="form-group mb-1">
+      <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+    </div>
   <% end %>
 </div>
-<div class="word_container">
-  <%= render 'word' %>
+
+
+
+<!-- 確認用メモ -->
+<div class="d-none">
+  <%= @tab_all %>
+  <p></p>
+  <%= @key_all %>
+  <p>↓↓メモ</p>
+  <div class="tab_container">
+    <p>タブ名</p>
+    <% if @tabs %>
+      <% @tabs.each do |t| %>
+        <div>
+          <%= t.name %>
+          「id: <%= t.id %>」
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="word_container">
+    <%= render 'word' %>
+  </div>
 </div>
 
 
 <!----- jQuery ----->
 <script>
+  // タブ機能
   $('.tab_box .tab_btn').click(function() {
   	var index = $('.tab_box .tab_btn').index(this);
   	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
   	$(this).addClass('active');
   	$('.tab_box .tab_panel').eq(index).addClass('active');
   	$("input[name='word[]']").prop('checked', false);  //タブクリックでチェック解除
+  });
+
+  // タブ編集表示・非表示
+  $(function(){
+    $(".edit_btn").click(function() {
+      $(".slide_tog").slideToggle();
+    });
+  });
+  // 登録キーワード削除表示・非表示
+  $(function(){
+    $(".edit_btn").click(function() {
+      $(".del_tog").toggle();
+    });
   });
 </script>
