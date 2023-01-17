@@ -9,6 +9,12 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: 'ゲストとしてログインしました。'
   end
 
+  # def first_tab_create
+  #   sign_in user
+  #   tab = Tab.first_tab
+  #   redirect_to root_path, notice: '新規アカウントを作成しました。'
+  # end
+
   # GET /resource/sign_in
   # def new
   #   super

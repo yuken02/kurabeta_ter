@@ -3,19 +3,20 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  # after_action :tab_create, only: [:create]
 
   # GET /resource/sign_up
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
-  def create
-    super
-    resource.tabs.build
-    resource.tabs.name = 'お気に入り'
-    resource.save
-  end
+  # def create
+  #   super
+  #   resource.tabs.build
+  #   resource.tabs.name = 'タブ'
+  #   resource.save
+  # end
 
   # GET /resource/edit
   # def edit
@@ -61,5 +62,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
+  # end
+
+
+  # def after_sign_up_path_for(resource)
+  #   super(resource)
+  #   # resource.tabs.build
+  #   # resource.tabs.name = 'タブ'
+  #   # resource.save
+  #   @tab_new = Tab.new
+  #   @tab_new.name = 'タブ'
+  #   @tab_new.user_id = current_user.id
+  #   @tab_new.save
+  # end
+
+  # private
+
+  # def tab_create
+  #   @tab_new = Tab.new
+  #   @tab_new.name = 'タブ'
+  #   @tab_new.user_id = current_user.id
+  #   @tab_new.save
   # end
 end

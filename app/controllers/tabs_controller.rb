@@ -4,7 +4,6 @@ class TabsController < ApplicationController
     @tab_new = Tab.new
     @tabs = Tab.where(user_id: current_user.id)
     if @tabs.count <= 2
-      # @tab_new = Tab.new(tab_params)
       @tab_new.name = 'タブ'
       @tab_new.user_id = current_user.id
       if @tab_new.save
@@ -32,9 +31,9 @@ class TabsController < ApplicationController
 
   private
 
-  def tab_params
-    params.require(:tab).permit(:name, :user_id)
-  end
+  # def tab_params
+  #   params.require(:tab).permit(:name, :user_id)
+  # end
 end
 
 
