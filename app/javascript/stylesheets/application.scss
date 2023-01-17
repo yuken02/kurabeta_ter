@@ -32,8 +32,8 @@
 }
 
 .tab_box .tab_btn.active {
-  background:#07539f;
-  color:#fff;
+  background: #07539f;
+  color: #fff;
 }
 
 .tab_box .panel_area {
@@ -42,19 +42,16 @@
 }
 
 .tab_box .tab_panel {
-  display:none;
+  display: none;
 }
 
 .tab_box .tab_panel.active {
-  display:block;
+  display: block;
 }
-
-// td {
-// 	margin-bottom: 3px;
-// }
 
 .del_tog {
 	text-size: 80%;
+	display: none;
 }
 
 

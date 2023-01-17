@@ -32,23 +32,10 @@ class SearchesController < ApplicationController
     if user_signed_in?
       ## タブ
       @tab_new = Tab.new
-      if Tab.exists?(user_id: [current_user.id])
-        @tabs = Tab.where(user_id: current_user.id)
-        @tabs_count = @tabs.count
-        ## activerecord_relationを配列に変換
-        # @tabs_h = @tabs.pluck(:id, :name).to_h
-        # ハッシュ...{'1'=>'犬','2'=>'猫','3'=>'犬'}
-        # @tabs_h = @tabs.pluck(:id, :name)
-        # 配列...['1','犬']['2','猫']['3','犬']
-
-        # @tabs_h = @tabs.pluck(:id, :name).to_h.invert　=>　{'犬'=>'1,3','猫'=>'2'}
-        # @tabs_h_inv = safe_invert_hash(@tabs_h)
-
-        @tabs_h = @tabs.pluck(:name, :id)
-        # 配列...['犬','1']['猫','2']['犬','1']
-
-        # pluck ... 指定したカラムの値を配列にできる
-      end
+      @tabs = Tab.where(user_id: current_user.id)
+      @tabs_count = @tabs.count
+      # activerecord_relationを配列に変換
+      @tabs_h = @tabs.pluck(:name, :id)
 
       ## 登録ワード
       @word_new = Keyword.new
@@ -59,6 +46,7 @@ class SearchesController < ApplicationController
           end
         ])
       end
+
 
       ## 比較
       @comparison = params[:keywords]
@@ -94,52 +82,6 @@ class SearchesController < ApplicationController
 
   private
 
-  # def safe_invert(orig_hash)
-  #   orig_hash.each_key.group_by do |key|
-  #   orig_hash[key]
-  #   end
-  # end
-
-  # def safe_invert_hash(orig_hash)
-  #   orig_array = []
-  #   orig_hash.each_pair do |k, item|
-  #     if item.count > 1
-  #       item.each do |itm|
-  #         orig_array << [itm, k]
-  #       end
-  #     else
-  #       orig_array << [item.first, k]
-  #     end
-  #   end
-  #   result = Hash.new do |h, key| h[key] = [] end
-  #   orig_array.each do |key, value|
-  #     result[key] << value
-  #   end
-  #   result
-  # end
-
-  # def safe_invert
-  #   inject(Hash.new{ |h,k| h[k] = [] }) do |hash, (val, keys)|
-  #     [*keys].each{ |key| hash[key] << val }
-  #     hash
-  #   end
-  # end
-
-  # def safe_invert_hash(orig_hash)
-  #   hash = Hash.new do|h,k| h[k] = [] end
-  #   orig_hash.each do |key, val|
-  #     hash[key] << val
-  #     # keys = key
-  #     hash[val] = key
-  #   end
-  #   hash
-  # end
-
-    # hash = Hash.new{|hash, key| hash[key] = []} do |h, (val, k)|
-    #   orig_hash.each do |k,v| h[k] << val
-    #   end
-    # end
-# h = Hash.new{|h, key| h[key] = []}
 end
 
     # orig_array = []
@@ -175,3 +117,21 @@ end
 # each_with_index の値は0から
 
 # .to_s(:delimited) 小数点
+
+# if Tab.exists?(user_id: [current_user.id])
+#   @tabs = Tab.where(user_id: current_user.id)
+#   @tabs_count = @tabs.count
+#   ## activerecord_relationを配列に変換
+#   # @tabs_h = @tabs.pluck(:id, :name).to_h
+#   # ハッシュ...{'1'=>'犬','2'=>'猫','3'=>'犬'}
+#   # @tabs_h = @tabs.pluck(:id, :name)
+#   # 配列...['1','犬']['2','猫']['3','犬']
+
+#   # @tabs_h = @tabs.pluck(:id, :name).to_h.invert　=>　{'犬'=>'1,3','猫'=>'2'}
+#   # @tabs_h_inv = safe_invert_hash(@tabs_h)
+
+#   @tabs_h = @tabs.pluck(:name, :id)  <= これ
+#   # 配列...['犬','1']['猫','2']['犬','1']
+
+#   # pluck ... 指定したカラムの値を配列にできる
+# end

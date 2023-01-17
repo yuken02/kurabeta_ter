@@ -1,7 +1,12 @@
 <div class="tab_box my-2">
   <div class="btn_area">
     <% @tabs.each_with_index do |tab, i| %>
-      <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name %></p>
+      <p class="tab_btn <% if i == 0 %>active<% end %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
+    <% end %>
+    <% if @tabs_count < 3 %>
+      <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+        <%= f.submit '+', class: ' ' %>
+      <% end %>
     <% end %>
   </div>
 
@@ -32,21 +37,7 @@
   <% end %>
 </div>
 
-<!-- タブ作成 -->
-<% if @tabs_count < 3 %>
-  <div class="col-12">
-    <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, placeholder: '新しいタブ', class: 'mr-2' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-<!-- キーワード作成 -->
+<!-- キーワード作成form -->
 <div class="col-12">
   <%= form_with model: @word_new, class: 'row' do |f| %>
     <div class="form-group mb-1">
@@ -61,15 +52,13 @@
   <% end %>
 </div>
 
-<!-- 編集 -->
+<!-- 編集form -->
 <div class="d-flex justify-content-center">
   <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
 </div>
-<div class="col-12 slide_tog card" style="display:none;">
-  <%= form_with model: @tab, class: 'row p-2' do |f| %>
-    <div class="form-group mb-1">
-      <%= f.select :id, @tabs_h, class: "tab_id" %> の名前を変更
-    </div>
+<%= @tabs.each_with_index do |t,i| %>
+<div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
+  <%= form_with model: t, class: 'row p-2' do |f| %>
     <div class="form-group mb-1">
       <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
     </div>
@@ -78,6 +67,7 @@
     </div>
   <% end %>
 </div>
+<% end %>
 
 <p></p>
 <%= @comparison %>
@@ -113,9 +103,11 @@
   $('.tab_box .tab_btn').click(function() {
   	var index = $('.tab_box .tab_btn').index(this);
   	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+  	$('.slide_tog').removeClass('active');
   	$(this).addClass('active');
   	$('.tab_box .tab_panel').eq(index).addClass('active');
-  	$("input[name='word[]']").prop('checked', false);  //タブクリックでチェック解除
+  	$('.slide_tog').eq(index).addClass('active');
+  	$("input[name='word[]']").prop('checked', false);  //全チェック解除
   });
 
   // タブ編集表示・非表示
