@@ -135,3 +135,5 @@ end
 
 #   # pluck ... 指定したカラムの値を配列にできる
 # end
+
+# <%= image_tag "/assets/sign-in-with-twitter-gray.png.twimg.1920.png" %>

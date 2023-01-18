@@ -9,6 +9,13 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: 'ゲストとしてログインしました。'
   end
 
+  def create
+    # request.env['omniauth.auth']にユーザのTwitter認証情報が格納されている
+    user_data = request.env['omniauth.auth']
+    session[:nickname] = user_data[:info][:nickname]
+    redirect_to root_path, notice: 'ログインしました'
+  end
+
   # def first_tab_create
   #   sign_in user
   #   tab = Tab.first_tab

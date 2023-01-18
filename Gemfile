@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'twitter'
 gem 'omniauth-twitter'
+gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails'
 gem 'pry-rails'
 gem 'devise-i18n'
