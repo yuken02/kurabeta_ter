@@ -35,7 +35,9 @@ class User < ApplicationRecord
         email: User.dumy_email(auth),
         provider: auth.provider,
         uid: auth.uid,
-        password: Devise.friendly_token[0, 20]
+        password: Devise.friendly_token[0, 20],
+        nickname: auth.nickname,
+        image: auth.image
       )
     end
     user
