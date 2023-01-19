@@ -28,7 +28,7 @@
             <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-dark sign_in", method: :post %>
           </li>
           <li>
-            <%= link_to user_twitter_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "twitter_log nav-link text-info" do %>
+            <%= link_to user_twitter_omniauth_authorize_path, method: :post , data: { turbo: false }, class: "twitter_log nav-link text-info" do %>
                 <div><i class="fab fa-twitter"></i> Twitterでログイン</div>
             <% end %>
           </li>

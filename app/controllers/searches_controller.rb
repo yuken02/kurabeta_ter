@@ -6,16 +6,17 @@ class SearchesController < ApplicationController
     require 'uri'
     require 'net/http'
 
-    # @result_tws = []
+    @result_tws = []
+    # byebug
     # if @keywords = params[:keyword]
-    #   @keywords.search_keyword
+    #   search_keyword('@keywords')
     #   if @tweets.include?('data')
     #     @tweet_count = @tweets['data'].length
     #   end
     # elsif @keywords = params[:keywords]
     #   @keywords.delete("0")
     #   @keywords.each_with_index do |keys,i|
-    #     keys.search_keyword
+    #     search_keyword('key')
     #   end
     #   if @tweets.include?('data')
     #     @tweet_count = @tweets['data'].length
@@ -97,35 +98,26 @@ class SearchesController < ApplicationController
 
 
   private
-  # @result_tws = []
-  # if @keywords.instance_of?(Array)
-  #   @keywords.delete("0")
-  #   @keywords.each_with_index do |keys,i|
-  #     keys.search_keyword
-  #   end
-  # else
-  #   @keywords.search_keyword
-  # end
 
-  # def self.search_keyword
-  #   ## HTTPリクエスト
-  #   enc_keyword = URI.encode_www_form_component(self)
-  #   bearer_token = ENV['BEARER_TOKEN']
-  #   uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keyword}&granularity=day")
-  #   http = Net::HTTP.new(uri.host, uri.port)
+  def search_keyword(key)
+    ## HTTPリクエスト
+    enc_keyword = URI.encode_www_form_component(key)
+    bearer_token = ENV['BEARER_TOKEN']
+    uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keyword}&granularity=day")
+    http = Net::HTTP.new(uri.host, uri.port)
 
-  #   http.use_ssl = true
-  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-  #   req = Net::HTTP::Get.new(uri.request_uri)
-  #   req["Authorization"] = "bearer #{bearer_token}"
+    req = Net::HTTP::Get.new(uri.request_uri)
+    req["Authorization"] = "bearer #{bearer_token}"
 
-  #   ## JSON => ハッシュ
-  #   res = http.request(req)
-  #   @tweets = JSON.parse(res.body)
+    ## JSON => ハッシュ
+    res = http.request(req)
+    @tweets = JSON.parse(res.body)
 
-  #   @result_tws << @tweets
-  # end
+    @result_tws << @tweets
+  end
 
 end
 
