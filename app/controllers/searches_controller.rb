@@ -1,10 +1,27 @@
 class SearchesController < ApplicationController
 
   def index
-    ### 検索機能
+    ## 検索機能
     require 'json'
     require 'uri'
     require 'net/http'
+
+    # @result_tws = []
+    # if @keywords = params[:keyword]
+    #   @keywords.search_keyword
+    #   if @tweets.include?('data')
+    #     @tweet_count = @tweets['data'].length
+    #   end
+    # elsif @keywords = params[:keywords]
+    #   @keywords.delete("0")
+    #   @keywords.each_with_index do |keys,i|
+    #     keys.search_keyword
+    #   end
+    #   if @tweets.include?('data')
+    #     @tweet_count = @tweets['data'].length
+    #   end
+    #   @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
+    # end
 
     ## HTTPリクエスト
     @keyword = params[:keyword]
@@ -19,17 +36,45 @@ class SearchesController < ApplicationController
     req = Net::HTTP::Get.new(uri.request_uri)
     req["Authorization"] = "bearer #{bearer_token}"
 
-    ## JSON => ハッシュ
+    # JSON => ハッシュ
     res = http.request(req)
     @tweets = JSON.parse(res.body)
     if @tweets.include?('data')
       @tweet_count = @tweets['data'].length
     end
-    @tab_all = Tab.all.to_a  #チェック用
-    @key_all = Keyword.all.to_a
+    @tab_all = Tab.all.to_a  #内容確認用
+    @key_all = Keyword.all.to_a  #内容確認用
 
     ### ログイン時
     if user_signed_in?
+      ## 比較(チェックボックス)
+      @comparison = params[:keywords]
+      if @comparison
+        if @comparison.include?("0")
+          @comparison.delete("0")
+        end
+        @result_tws = []
+        @comparison.each_with_index do |c,i|
+          enc_keywords = URI.encode_www_form_component(c)
+          uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
+          http_s = Net::HTTP.new(uri_s.host, uri_s.port)
+
+          http_s.use_ssl = true
+          http_s.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+          req_s = Net::HTTP::Get.new(uri_s.request_uri)
+          req_s["Authorization"] = "bearer #{bearer_token}"
+
+          res_s = http_s.request(req_s)
+          @tweets = JSON.parse(res_s.body)
+          @result_tws << @tweets
+        end
+        if @tweets.include?('data')
+          @tweet_count = @tweets['data'].length
+        end
+        @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
+      end
+
       ## タブ
       @tab_new = Tab.new
       @tabs = Tab.where(user_id: current_user.id)
@@ -45,42 +90,42 @@ class SearchesController < ApplicationController
             t.id
           end
         ])
+        @word_count = @word.count
       end
-
-
-      ## 比較
-      @comparison = params[:keywords]
-      if @comparison
-        if @comparison.include?("0")
-          @comparison.delete("0")
-        end
-        @comp_tws = []
-        @comparison.each_with_index do |c,i|
-          enc_keywords = URI.encode_www_form_component(c)
-          uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
-          http_s = Net::HTTP.new(uri_s.host, uri_s.port)
-
-          http_s.use_ssl = true
-          http_s.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-          req_s = Net::HTTP::Get.new(uri_s.request_uri)
-          req_s["Authorization"] = "bearer #{bearer_token}"
-
-          res_s = http_s.request(req_s)
-          @tweets = JSON.parse(res_s.body)
-          @comp_tws << @tweets
-        end
-          if @tweets.include?('data')
-            @tweet_count = @tweets['data'].length
-          end
-          @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
-      end
-
     end
   end
 
 
   private
+  # @result_tws = []
+  # if @keywords.instance_of?(Array)
+  #   @keywords.delete("0")
+  #   @keywords.each_with_index do |keys,i|
+  #     keys.search_keyword
+  #   end
+  # else
+  #   @keywords.search_keyword
+  # end
+
+  # def self.search_keyword
+  #   ## HTTPリクエスト
+  #   enc_keyword = URI.encode_www_form_component(self)
+  #   bearer_token = ENV['BEARER_TOKEN']
+  #   uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keyword}&granularity=day")
+  #   http = Net::HTTP.new(uri.host, uri.port)
+
+  #   http.use_ssl = true
+  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  #   req = Net::HTTP::Get.new(uri.request_uri)
+  #   req["Authorization"] = "bearer #{bearer_token}"
+
+  #   ## JSON => ハッシュ
+  #   res = http.request(req)
+  #   @tweets = JSON.parse(res.body)
+
+  #   @result_tws << @tweets
+  # end
 
 end
 

@@ -8,7 +8,7 @@
     data: {
       labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
       datasets: [
-        <% @comp_tws.each_with_index do |tw, twi| %>
+        <% @result_tws.each_with_index do |tw, twi| %>
           {
             label: '<%= @comparison[twi] %>',
             data: [

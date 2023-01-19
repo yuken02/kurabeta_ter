@@ -39,15 +39,22 @@
 
 <!-- キーワード作成form -->
 <div class="col-12">
-  <%= form_with model: @word_new, class: 'row' do |f| %>
-    <div class="form-group mb-1">
-      <%= f.select :tab_id, @tabs_h, class: "tab_id" %> に登録
-    </div>
-    <div class="form-group">
-      <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
-    </div>
-    <div class="form-group">
-      <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
+  <% if @word_count <= 30 %>
+    <%= form_with model: @word_new, class: 'row' do |f| %>
+      <div class="form-group mb-1">
+        <%= f.select :tab_id, @tabs_h, class: "tab_id" %> に登録
+      </div>
+      <div class="form-group">
+        <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      登録できるキーワードは30個までです。<br/>
+      新しく登録する場合は既にあるキーワードを削除してください。
     </div>
   <% end %>
 </div>
@@ -71,6 +78,7 @@
 
 <p></p>
 <%= @comparison %>
+<%= @word_count %>
 
 <p></p>
 

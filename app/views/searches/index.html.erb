@@ -39,13 +39,13 @@
             1週間の総ツイート数：
             <% @comparison.each_with_index do |c,i| %>
               <%= c %>
-              <%= @comp_tws[i]['meta']['total_tweet_count'] %> 件 /
+              <%= @result_tws[i]['meta']['total_tweet_count'] %> 件 /
             <% end %>
           </div>
           <div>
             <%= render 'charts' %>
             <%= @comparison_ar %>
-            <%= @comp_tws %>
+            <%= @result_tws %>
           </div>
         <% else %>
           キーワードを検索してください。
