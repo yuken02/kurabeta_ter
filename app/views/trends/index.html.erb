@@ -4,24 +4,60 @@
   </div>
 
   <div class="row">
-    <h2 class="my-2">トレンドトップ30</h2>
-    <table class="table table-hover table-inverse">
-      <tbody>
-        <% @trends.each_with_index do |trend, i| %>
-          <tr>
-            <td>
-              <%= i+1 %>.
-            </td>
-            <td class="col-md-6">
-              <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
-            </td>
-            <td>
-              <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <h2 class="col-12 my-3">トレンドトップ30</h2>
+    <div class="col-md-6">
+      <table class="table table-hover table-inverse">
+        <tbody>
+          <% @trends.each_with_index do |trend, i| %>
+            <% if i >= 15 %>
+              <% break %>
+            <% else %>
+              <tr>
+                <td class="px-0">
+                  <%= i+1 %>.
+                </td>
+                <td class="col-md-6 pl-0">
+                  <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
+                </td>
+                <td>
+                  <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
+                </td>
+                <td>
+                  <a href="/search?keyword=<%= trend[:name] %>">グラフ</a>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <table class="table table-hover table-inverse">
+        <tbody>
+          <% @trends.each_with_index do |trend, i| %>
+            <% if i <= 14 %>
+              <% next %>
+            <% else %>
+              <tr>
+                <td class="px-0">
+                  <%= i+1 %>.
+                </td>
+                <td class="col-md-6 pl-0">
+                  <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
+                </td>
+                <td>
+                  <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
+                </td>
+                <td>
+                  <a href="/search?keyword=<%= trend[:name] %>">グラフ</a>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -29,3 +65,4 @@
     <a href="<%= @trends[0][:url] %>"><%= @trends[0][:name] %></a><br><span><%= @trends[0][:tweet_volume] %>件のツイート</span><span><br></span>
     <a href="<%= @trends[2][:url] %>"><%= @trends[2][:name] %></a><span><%= @trends[2][:tweet_volume] %></span><br>
     <!--.to_s(:delimited)-->
+    <%= @trends %>
