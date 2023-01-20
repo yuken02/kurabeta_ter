@@ -5,7 +5,7 @@
     <% end %>
     <% if @tabs_count < 3 %>
       <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
-        <%= f.submit '+', class: ' ' %>
+        <%= f.submit '+', class: 'px-2' %>
       <% end %>
     <% end %>
   </div>
@@ -63,46 +63,22 @@
 <div class="d-flex justify-content-center">
   <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
 </div>
-<%= @tabs.each_with_index do |t,i| %>
-<div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
-  <%= form_with model: t, class: 'row p-2' do |f| %>
-    <div class="form-group mb-1">
-      <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
-    </div>
-    <div class="form-group mb-1">
-      <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+<div>
+  <% @tabs.each_with_index do |t,i| %>
+    <div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
+      <%= form_with model: t, class: 'row p-2' do |f| %>
+        <div class="form-group mb-1">
+          <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+        </div>
+        <div class="form-group mb-1">
+          <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
-<% end %>
 
-<p></p>
-<%= @comparison %>
-<%= @word_count %>
 
-<p></p>
-
-<!-- 確認用メモ -->
-<div class="d-none">
-  <%= @tab_all %>
-  <p></p>
-  <%= @key_all %>
-  <p>↓↓メモ</p>
-  <div class="tab_container">
-    <p>タブ名</p>
-    <% if @tabs %>
-      <% @tabs.each do |t| %>
-        <div>
-          <%= t.name %>
-          「id: <%= t.id %>」
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="word_container">
-    <%= render 'word' %>
-  </div>
-</div>
 
 
 <!----- jQuery ----->

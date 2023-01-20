@@ -40,6 +40,7 @@ class SearchesController < ApplicationController
     # JSON => ハッシュ
     res = http.request(req)
     @tweets = JSON.parse(res.body)
+    @tw_url = "http://twitter.com/search?q=#{@keyword}"
     if @tweets.include?('data')
       @tweet_count = @tweets['data'].length
     end
