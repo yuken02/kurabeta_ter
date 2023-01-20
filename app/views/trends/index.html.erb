@@ -16,13 +16,13 @@
                 <td class="px-0">
                   <%= i+1 %>.
                 </td>
-                <td class="col-md-6 pl-0">
+                <td class="pl-0 col-6">
                   <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
                 </td>
                 <td>
                   <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
                 </td>
-                <td>
+                <td class="pl-0">
                   <a href="/search?keyword=<%= trend[:name] %>">グラフ</a>
                 </td>
               </tr>
@@ -43,7 +43,7 @@
                 <td class="px-0">
                   <%= i+1 %>.
                 </td>
-                <td class="col-md-6 pl-0">
+                <td class="pl-0">
                   <a href="<%= trend[:url] %>" class="col-md-2"> <%= trend[:name] %> </a>
                 </td>
                 <td>
@@ -58,11 +58,19 @@
         </tbody>
       </table>
     </div>
+
+    <div class="row">
+      <div class="col-11">
+        <!-- memo -->
+        <a href="<%= @trends[0][:url] %>"><%= @trends[0][:name] %></a><br><span><%= @trends[0][:tweet_volume] %>件のツイート</span><span><br></span>
+        <a href="<%= @trends[2][:url] %>"><%= @trends[2][:name] %></a><span><%= @trends[2][:tweet_volume] %></span><br>
+        <!--.to_s(:delimited)-->
+        <p class="text-wrap">
+          <%= @trends %>
+        </p>
+      </div>
+      <div class="col-1">test</div>
+    </div>
+
   </div>
 </div>
-
-<!-- memo -->
-    <a href="<%= @trends[0][:url] %>"><%= @trends[0][:name] %></a><br><span><%= @trends[0][:tweet_volume] %>件のツイート</span><span><br></span>
-    <a href="<%= @trends[2][:url] %>"><%= @trends[2][:name] %></a><span><%= @trends[2][:tweet_volume] %></span><br>
-    <!--.to_s(:delimited)-->
-    <%= @trends %>

@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
     <%= render 'layouts/header' %>
 
     <main>
@@ -25,7 +25,10 @@
           <i class="fas fa-exclamation-triangle"></i><apan class="ml-2"><%= alert %></apan>
         </div>
       <% end %>
+
       <%= yield %>
     </main>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>
