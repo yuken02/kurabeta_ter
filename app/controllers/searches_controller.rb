@@ -80,6 +80,23 @@ end
     # end
     # orig_hash.to_h
 
+# <!-- memo -->
+# <%= @tweets %>
+
+# <p></p>
+# <% @tweets.each do |tweet| %>
+#   <%= @tweets['data'][0] %>
+# <% end %>
+
+# <p></p>
+# <p>ツイートカウント</p>
+# <% @tweet_count.times do |i| %>
+#   <%= @tweets['data'][i]['tweet_count'] %>,
+# <% end %>
+# <%= @tweet_count %>
+# <%= @tweets.find_all{|y| y == ['tweet_count']} %>
+
+
 ### メモ ###
 # byebug
 # binding.pry

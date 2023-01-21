@@ -10,7 +10,7 @@ class TabsController < ApplicationController
         redirect_to search_path, notice: "タブを作成しました"
       else
         @keyword = params[:keyword]
-        render '/search'
+        redirect_to request.referer
       end
     else
       redirect_to "/search", notice: "これ以上タブは作れません。"
@@ -24,7 +24,7 @@ class TabsController < ApplicationController
     if @tab.update(tab_params)
       redirect_to "/search", notice: "タブの名前を変更しました。"
     else
-      render "/search"
+      redirect_to request.referer
     end
   end
 

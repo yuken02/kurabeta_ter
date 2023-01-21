@@ -7,48 +7,31 @@
     <div class="col-md-9 tweet_chart">
       <% if @keyword %>
         <h2 class="my-2">検索結果: <a href="http://twitter.com/search?q=<%= @keyword %>"><%= @keyword %></a></h2>
-        １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
+        <div>
+          １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
+        </div>
         <div>
           <%= render 'chart' %>
         </div>
-
-              <!-- memo -->
-              <%= @tweets %>
-
-              <p></p>
-              <% @tweets.each do |tweet| %>
-                <%= @tweets['data'][0] %>
-              <% end %>
-
-              <p></p>
-              <p>ツイートカウント</p>
-              <% @tweet_count.times do |i| %>
-                <%= @tweets['data'][i]['tweet_count'] %>,
-              <% end %>
-              <%= @tweet_count %>
-              <%= @tweets.find_all{|y| y == ['tweet_count']} %>
-
+      <% elsif @comparison %>
+        <h2 class="my-2">検索結果: <% @comparison.each_with_index do |c,i| %>
+            <a href="http://twitter.com/search?q=<%= c %>"><%= c %></a>/
+          <% end %>
+        </h2>
+        <div>
+          1週間の総ツイート数：
+          <% @comparison.each_with_index do |c,i| %>
+            <%= c %>
+            <%= @result_tws[i]['meta']['total_tweet_count'] %> 件 /
+          <% end %>
+        </div>
+        <div>
+          <%= render 'charts' %>
+          <%= @comparison_ar %>
+          <%= @result_tws %>
+        </div>
       <% else %>
-        <% if @comparison %>
-          <h2 class="my-2">検索結果: <% @comparison.each_with_index do |c,i| %>
-              <a href="http://twitter.com/search?q=<%= c %>"><%= c %></a>/
-            <% end %>
-          </h2>
-          <div>
-            1週間の総ツイート数：
-            <% @comparison.each_with_index do |c,i| %>
-              <%= c %>
-              <%= @result_tws[i]['meta']['total_tweet_count'] %> 件 /
-            <% end %>
-          </div>
-          <div>
-            <%= render 'charts' %>
-            <%= @comparison_ar %>
-            <%= @result_tws %>
-          </div>
-        <% else %>
-          キーワードを検索してください。
-        <% end %>
+        キーワードを検索してください。
       <% end %>
     </div>
 
