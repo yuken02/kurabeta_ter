@@ -1,51 +1,16 @@
 class SearchesController < ApplicationController
 
   def index
-    ## 検索機能
     require 'json'
     require 'uri'
     require 'net/http'
 
-    @result_tws = []
-    # byebug
-    # if @keywords = params[:keyword]
-    #   search_keyword('@keywords')
-    #   if @tweets.include?('data')
-    #     @tweet_count = @tweets['data'].length
-    #   end
-    # elsif @keywords = params[:keywords]
-    #   @keywords.delete("0")
-    #   @keywords.each_with_index do |keys,i|
-    #     search_keyword('key')
-    #   end
-    #   if @tweets.include?('data')
-    #     @tweet_count = @tweets['data'].length
-    #   end
-    #   @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
-    # end
-
-    ## HTTPリクエスト
+    ## 検索機能
     @keyword = params[:keyword]
-    enc_keyword = URI.encode_www_form_component(@keyword)
-    bearer_token = ENV['BEARER_TOKEN']
-    uri = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keyword}&granularity=day")
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    req = Net::HTTP::Get.new(uri.request_uri)
-    req["Authorization"] = "bearer #{bearer_token}"
-
-    # JSON => ハッシュ
-    res = http.request(req)
-    @tweets = JSON.parse(res.body)
-    @tw_url = "http://twitter.com/search?q=#{@keyword}"
+    search_keyword(@keyword)
     if @tweets.include?('data')
       @tweet_count = @tweets['data'].length
     end
-    @tab_all = Tab.all.to_a  #内容確認用
-    @key_all = Keyword.all.to_a  #内容確認用
 
     ### ログイン時
     if user_signed_in?
@@ -57,24 +22,13 @@ class SearchesController < ApplicationController
         end
         @result_tws = []
         @comparison.each_with_index do |c,i|
-          enc_keywords = URI.encode_www_form_component(c)
-          uri_s = URI.parse("https://api.twitter.com/2/tweets/counts/recent?query=#{enc_keywords}&granularity=day")
-          http_s = Net::HTTP.new(uri_s.host, uri_s.port)
-
-          http_s.use_ssl = true
-          http_s.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-          req_s = Net::HTTP::Get.new(uri_s.request_uri)
-          req_s["Authorization"] = "bearer #{bearer_token}"
-
-          res_s = http_s.request(req_s)
-          @tweets = JSON.parse(res_s.body)
-          @result_tws << @tweets
+          search_keyword(c)
+           @result_tws << @tweets
         end
         if @tweets.include?('data')
           @tweet_count = @tweets['data'].length
         end
-        @color = ['blue', 'red', 'orange', 'green', 'indigo', 'maroon']
+        @color = ['royalblue', 'red', 'mediumseagreen', 'orange', 'indigo', 'gold', 'lightsteelblue', 'lawngreen', 'violet', 'maroon']
       end
 
       ## タブ
@@ -116,8 +70,6 @@ class SearchesController < ApplicationController
     ## JSON => ハッシュ
     res = http.request(req)
     @tweets = JSON.parse(res.body)
-
-    @result_tws << @tweets
   end
 
 end
@@ -175,3 +127,6 @@ end
 # end
 
 # <%= image_tag "/assets/sign-in-with-twitter-gray.png.twimg.1920.png" %>
+
+# @tab_all = Tab.all.to_a  #内容確認用
+# @key_all = Keyword.all.to_a  #内容確認用

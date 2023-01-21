@@ -5,13 +5,12 @@
 
   <div class="row">
     <div class="col-md-9 tweet_chart">
-      <% if @keyword.present? %>
-        <h2 class="my-2">検索結果: <a href="<%= @tw_url %>"><%= @keyword %></a></h2>
+      <% if @keyword %>
+        <h2 class="my-2">検索結果: <a href="http://twitter.com/search?q=<%= @keyword %>"><%= @keyword %></a></h2>
         １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
         <div>
           <%= render 'chart' %>
         </div>
-
 
               <!-- memo -->
               <%= @tweets %>
@@ -55,7 +54,7 @@
 
     <% if user_signed_in? %>
       <div class="sidebar col-md-3">
-        <%= render 'tab' %>
+        <%= render 'searches/tab' %>
       </div>
     <% end %>
   </div>

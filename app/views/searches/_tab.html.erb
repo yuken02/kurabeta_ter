@@ -22,7 +22,9 @@
                     <%= f.check_box :keywords, {multiple: true}, word.word %>
                     <%= f.label :word, word.word, class: "m-0" %>
                   </td>
-                  <td><%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1", style: "display:none;" %></td>
+                  <td width="">
+                    <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", style: "display:none;" %>
+                  </td>
                 </tr>
               </table>
             <% end %>
@@ -41,6 +43,7 @@
 <div class="col-12">
   <% if @word_count <= 30 %>
     <%= form_with model: @word_new, class: 'row' do |f| %>
+    <%= render "devise/shared/error_messages", resource: @word_new %>
       <div class="form-group mb-1">
         <%= f.select :tab_id, @tabs_h, class: "tab_id" %> に登録
       </div>

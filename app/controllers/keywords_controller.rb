@@ -7,11 +7,9 @@ class KeywordsController < ApplicationController
       redirect_to search_path, notice: "キーワードを登録しました"
     else
       @keyword = params[:keyword]
-      render '/search'
+      # render template: 'searches/index'
+      redirect_to request.referer
     end
-  end
-
-  def update
   end
 
   def destroy

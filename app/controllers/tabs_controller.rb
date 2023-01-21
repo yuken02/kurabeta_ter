@@ -31,9 +31,9 @@ class TabsController < ApplicationController
 
   private
 
-  # def tab_params
-  #   params.require(:tab).permit(:name, :user_id)
-  # end
+  def tab_params
+    params.require(:tab).permit(:name, :user_id)
+  end
 end
 
 
