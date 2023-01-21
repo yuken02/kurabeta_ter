@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   get 'tabs/create'
   devise_for :users, controllers: {
    registrations: 'users/registrations',
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   resources :trends, only: [:index]
   resources :tabs, only: [:create, :update]
   resources :keywords, only: [:create, :destroy]
-#   post 'keyword' => 'keywords#create', as: 'words'
+  resources :users, only: [:show, :edit, :update]
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'

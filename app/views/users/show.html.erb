@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row my-3 justify-content-center">
+    <%= render 'layouts/main_head' %>
+  </div>
+
+  <div class="row">
+    <% if current_user.uid.nil? %>
+      <i class="fas fa-user"></i>ユーザー
+    <% else %>
+      <% if current_user.image.nil? %>
+        <i class="fas fa-user"></i>
+      <% else %>
+        <div>
+          <div class="rounded-circle mr-2">
+            <%= image_tag(current_user.image,class: "tw_img rounded-circle", style: "height:30px") %>
+            <%= current_user.nickname %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

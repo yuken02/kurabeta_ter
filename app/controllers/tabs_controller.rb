@@ -17,7 +17,6 @@ class TabsController < ApplicationController
     end
   end
 
-
   def update
     @tab = Tab.find(params[:id])
     @tab.user_id = current_user.id
@@ -35,18 +34,3 @@ class TabsController < ApplicationController
     params.require(:tab).permit(:name, :user_id)
   end
 end
-
-
-# <!-- タブ作成form -->
-# <% if @tabs_count < 3 %>
-#   <div class="col-12">
-#     <%= form_with model: @tab_new, local: true, class: 'row' do |f| %>
-#       <div class="form-group">
-#         <%= f.text_field :name, placeholder: '新しいタブ', class: 'mr-2' %>
-#       </div>
-#       <div class="form-group">
-#         <%= f.submit '作成', class: 'btn btn-sm btn-info' %>
-#       </div>
-#     <% end %>
-#   </div>
-# <% end %>

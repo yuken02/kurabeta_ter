@@ -19,13 +19,6 @@ class KeywordsController < ApplicationController
 
 
   private
-  # model
-  # def self.tab_check
-  #   find_or_create_by!(user_id: current_user.id) do |tab|
-  #     tab.name = 'タブ1'
-  #     tab.user_id = current_user.id
-  #   end
-  # end
 
   def word_params
     params.require(:keyword).permit(:word, :tab_id)

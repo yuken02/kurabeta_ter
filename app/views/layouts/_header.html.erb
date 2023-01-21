@@ -8,7 +8,25 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-          <li>
+          <li class="mr-2">
+            <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
+              <% if current_user.uid.nil? %>
+                <i class="fas fa-user"></i>ユーザー
+              <% else %>
+                <% if current_user.image.nil? %>
+                  <i class="fas fa-user"></i>
+                <% else %>
+                  <div>
+                    <div class="rounded-circle mr-2">
+                      <%= image_tag(current_user.image,class: "tw_img rounded-circle", style: "height:30px") %>
+                      <%= current_user.nickname %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+          <li class="log_out">
             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>

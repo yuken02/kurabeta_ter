@@ -8,12 +8,11 @@ class SearchesController < ApplicationController
     ## 検索機能
     @keyword = params[:keyword]
     search_keyword(@keyword)
-    if @tweets.include?('data')
-      @tweet_count = @tweets['data'].length
-    end
 
     ### ログイン時
     if user_signed_in?
+      @user = current_user
+
       ## 比較(チェックボックス)
       @comparison = params[:keywords]
       if @comparison
@@ -23,10 +22,7 @@ class SearchesController < ApplicationController
         @result_tws = []
         @comparison.each_with_index do |c,i|
           search_keyword(c)
-           @result_tws << @tweets
-        end
-        if @tweets.include?('data')
-          @tweet_count = @tweets['data'].length
+          @result_tws << @tweets
         end
         @color = ['royalblue', 'red', 'mediumseagreen', 'orange', 'indigo', 'gold', 'lightsteelblue', 'lawngreen', 'violet', 'maroon']
       end
@@ -40,6 +36,7 @@ class SearchesController < ApplicationController
 
       ## 登録ワード
       @word_new = Keyword.new
+      @word_count = 0
       if Keyword.exists?(tab_id: [@tabs.first])
         @word = Keyword.where(tab_id: [
           @tabs.each do |t|
@@ -48,6 +45,11 @@ class SearchesController < ApplicationController
         ])
         @word_count = @word.count
       end
+    end
+
+    ## チャートdataのtimes用
+    if @tweets.include?('data')
+      @tweet_count = @tweets['data'].length
     end
   end
 
