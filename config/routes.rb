@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/show'
+
   get 'tabs/create'
   devise_for :users, controllers: {
    registrations: 'users/registrations',
