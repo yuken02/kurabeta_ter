@@ -1,4 +1,5 @@
 class TabsController < ApplicationController
+  before_action :authenticate_user!, only: [:create,:update]
 
   def create
     @tab_new = Tab.new

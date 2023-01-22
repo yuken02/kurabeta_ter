@@ -3,20 +3,33 @@
     <%= render 'layouts/main_head' %>
   </div>
 
-  <div class="row">
-    <% if current_user.uid.nil? %>
-      <i class="fas fa-user"></i>ユーザー
-    <% else %>
-      <% if current_user.image.nil? %>
-        <i class="fas fa-user"></i>
-      <% else %>
-        <div>
-          <div class="rounded-circle mr-2">
-            <%= image_tag(current_user.image,class: "tw_img rounded-circle", style: "height:30px") %>
-            <%= current_user.nickname %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+  <div class="row mt-5">
+    <div class="col-md-10">
+      <h2 class="my-4">ユーザー情報</h2>
+      <div>
+        <% if current_user.uid.nil? %>
+          <% if current_user.email == 'guest@example.com' %>
+            <p>ゲストユーザーです</p>
+          <% else %>
+            <p>登録メールアドレス：<%= current_user.email %></p>
+            <p>パスワード：●●●●●●</p>
+            <%= link_to edit_user_registration_path(current_user), class: "btn btn-outline-success" do %>
+              編集
+            <% end %>
+          <% end %>
+        <% else %>
+          <% if current_user.image.nil? %>
+            <i class="fas fa-user"></i>
+          <% else %>
+            <div>
+              <div class="rounded-circle mr-2">
+                <%= image_tag(current_user.image,class: "tw_img rounded-circle", style: "height:30px") %>
+                <%= current_user.nickname %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -11,10 +11,14 @@
           <li class="mr-2">
             <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
               <% if current_user.uid.nil? %>
-                <i class="fas fa-user"></i>ユーザー
+                <% if current_user.email == 'guest@example.com' %>
+                  <i class="fas fa-user"></i> ゲスト
+                <% else %>
+                  <i class="fas fa-user"></i> ユーザー
+                <% end %>
               <% else %>
                 <% if current_user.image.nil? %>
-                  <i class="fas fa-user"></i>
+                  <i class="fas fa-user"></i> <%= current_user.nickname %>
                 <% else %>
                   <div>
                     <div class="rounded-circle mr-2">

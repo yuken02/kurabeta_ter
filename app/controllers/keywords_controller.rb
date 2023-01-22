@@ -1,7 +1,7 @@
 class KeywordsController < ApplicationController
+  before_action :authenticate_user!, only: [:create,:destroy]
 
   def create
-    # Tab.tab_check
     @word_new = Keyword.new(word_params)
     if @word_new.save
       redirect_to search_path, notice: "キーワードを登録しました"
