@@ -14,19 +14,21 @@
     <div class="panel_area mb-2">
       <% @tabs.each_with_index do |tab, i| %>
         <div class="tab_panel <% if i == 0 %>active<% end %>">
-          <% @word.each do |word| %>
-            <% if word.tab_id == tab.id %>
-              <table class="table table-sm table-borderless mb-0">
-                <tr>
-                  <td>
-                    <%= f.check_box :keywords, {multiple: true}, word.word %>
-                    <%= f.label :word, word.word, class: "m-0" %>
-                  </td>
-                  <td width="">
-                    <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", style: "display:none;" %>
-                  </td>
-                </tr>
-              </table>
+          <% if @word %>
+            <% @word.each do |word| %>
+              <% if word.tab_id == tab.id %>
+                <table class="table table-sm table-borderless mb-0">
+                  <tr>
+                    <td>
+                      <%= f.check_box :keywords, {multiple: true}, word.word %>
+                      <%= f.label :word, word.word, class: "m-0" %>
+                    </td>
+                    <td width="">
+                      <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", style: "display:none;" %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
             <% end %>
           <% end %>
         </div>
