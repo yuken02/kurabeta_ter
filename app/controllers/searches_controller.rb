@@ -150,3 +150,55 @@ end
 
 # @tab_all = Tab.all.to_a  #内容確認用
 # @key_all = Keyword.all.to_a  #内容確認用
+
+# <div>
+#   <%= render 'chart' %>
+# </div>
+
+# <div>
+#   <%= render 'charts' %>
+#   <%= @comparison_ar %>
+#   <%= @result_tws %>
+# </div>
+
+### charts.html.erb
+# <canvas id="weekChart"></canvas>
+
+# <script>
+#   var ctx = document.getElementById("weekChart");
+
+#   var weekChart = new Chart(ctx, {
+#     type: 'line',
+#     data: {
+#       labels: ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+#       datasets: [
+#         <% @result_tws.each_with_index do |tw, twi| %>
+#           {
+#             label: '<%= @comparison[twi] %>',
+#             data: [
+#               <% @tweet_count.times do |i| %>
+#                 <%= tw['data'][i]['tweet_count'] %>,
+#               <% end %>
+#             ],
+#             borderColor: '<%= @color[twi] %>',
+#             backgroundColor: 'rgba(0,0,0,0)'
+#           },
+#         <% end %>
+#       ],
+#     },
+#     options: {
+#       title: {
+#         dispray: true,
+#       },
+#       scales: {
+#         yAxes: [{
+#           ticks: {
+#             suggestedMax: 1000,
+#             suggestedMin: 0,
+#             stepSize: 10000,
+#           }
+#         }]
+#       },
+#     }
+#   });
+# </script>
