@@ -23,7 +23,9 @@
                   <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
                 </td>
                 <td class="px-0">
-                  <a class="btn btn-sm btn-outline-secondary" href="/search?keyword=<%= trend[:name] %>"><i class="fa fa-chart-line"></i></a>
+                  <%= link_to search_path(keyword: trend[:name]), class: "btn btn-sm btn-outline-secondary" do %>
+                    <i class="fa fa-chart-line"></i>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

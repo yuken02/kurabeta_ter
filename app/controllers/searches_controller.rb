@@ -47,10 +47,6 @@ class SearchesController < ApplicationController
       end
     end
 
-    ## チャートdataのtimes用
-    if @tweets.include?('data')
-      @tweet_count = @tweets['data'].length
-    end
   end
 
 
@@ -72,6 +68,11 @@ class SearchesController < ApplicationController
     ## JSON => ハッシュ
     res = http.request(req)
     @tweets = JSON.parse(res.body)
+
+    ## チャートdataのtimes用
+    if @tweets.include?('data')
+      @tweet_count = @tweets['data'].length
+    end
   end
 
 end
