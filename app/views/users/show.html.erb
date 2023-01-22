@@ -3,14 +3,18 @@
     <%= render 'layouts/main_head' %>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-md-10">
-      <h2 class="my-4">ユーザー情報</h2>
+  <div class="row mt-5 justify-content-center">
+    <div class="card mx-auto p-5">
+      <div class="mx-auto">
+        <h2 class="mb-4">ユーザー情報</h2>
+      </div>
       <div>
         <% if current_user.uid.nil? %>
           <% if current_user.email == 'guest@example.com' %>
+          <!-- ゲストユーザー -->
             <p>ゲストユーザーです</p>
           <% else %>
+          <!-- メアドログインユーザー -->
             <p>登録メールアドレス：<%= current_user.email %></p>
             <p>パスワード：●●●●●●</p>
             <%= link_to edit_user_registration_path(current_user), class: "btn btn-outline-success" do %>
@@ -18,16 +22,29 @@
             <% end %>
           <% end %>
         <% else %>
-          <% if current_user.image.nil? %>
-            <i class="fas fa-user"></i>
-          <% else %>
+          <!-- Twitterログインユーザー -->
+          <h6>Twitterでログイン中です。</h6>
+          <div class="mb-5">
             <div>
-              <div class="rounded-circle mr-2">
-                <%= image_tag(current_user.image,class: "tw_img rounded-circle", style: "height:30px") %>
-                <%= current_user.nickname %>
+              <div class="mr-2">
+                ログインアカウント：
+                <%= link_to 'https://twitter.com/#{[:nickname]}', class: "btn btn-outline-secondary pl-0 py-0 pr-3" do %>
+                  <% if current_user.image.nil? %>
+                    <!-- Twitter画像なし -->
+                    <span class="mx-2"><i class="fas fa-user"></i></span>
+                    <span><%= current_user.nickname %></span>
+                  <% else %>
+                    <!-- Twitter画像あり -->
+                    <span><%= image_tag(current_user.image,class: "", style: "height:") %></span>
+                    <span class="mx-2"><%= current_user.nickname %></span>
+                  <% end %>
+                <% end %>
               </div>
             </div>
-          <% end %>
+          </div>
+          <h5 class="mb-1">上記アカウントでログインしているアカウントを削除</h5>
+          <span class="my-0">Twitterアカウントは削除されません。</span>
+          <p><%= button_to "アカウント削除", registration_path(current_user), data: { confirm: "本当に削除しますか?" }, method: :delete, class: "btn btn-danger px-2" %></p>
         <% end %>
       </div>
     </div>
