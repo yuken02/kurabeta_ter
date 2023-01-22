@@ -20,3 +20,10 @@ end
 #     <% end %>
 #   <% end %>
 # <% end %>
+
+# shared/_link のメモ
+# <%- if devise_mapping.omniauthable? %>
+#   <%- resource_class.omniauth_providers.each do |provider| %>
+#     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
+#   <% end %>
+# <% end %>

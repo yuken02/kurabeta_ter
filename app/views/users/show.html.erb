@@ -8,7 +8,7 @@
       <div class="mx-auto">
         <h2 class="mb-4">ユーザー情報</h2>
       </div>
-      <div>
+      <div class="mx-md-5">
         <% if current_user.uid.nil? %>
           <% if current_user.email == 'guest@example.com' %>
           <!-- ゲストユーザー -->
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <h5 class="mb-1">上記アカウントでログインしているアカウントを削除</h5>
+          <h5 class="mb-1">比べたter のアカウントを削除</h5>
           <span class="my-0">Twitterアカウントは削除されません。</span>
           <p><%= button_to "アカウント削除", registration_path(current_user), data: { confirm: "本当に削除しますか?" }, method: :delete, class: "btn btn-danger px-2" %></p>
         <% end %>
