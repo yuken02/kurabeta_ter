@@ -42,45 +42,50 @@
 </div>
 
 <!-- キーワード作成form -->
-<div class="col-12">
-  <% if @word_count <= 30 %>
-    <%= form_with model: @word_new, class: 'row' do |f| %>
-      <div class="form-group mb-1">
-        <%= f.select :tab_id, @tabs_h, class: "tab_id" %> に登録
-      </div>
-      <div class="form-group">
-        <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
-      </div>
-    <% end %>
-  <% else %>
-    <div>
-      登録できるキーワードは30個までです。<br/>
-      新しく登録する場合は既にあるキーワードを削除してください。
-    </div>
-  <% end %>
-</div>
-
-<!-- タブ編集form -->
-<div class="d-flex justify-content-center">
-  <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
-</div>
-<div>
-  <% @tabs.each_with_index do |t,i| %>
-    <div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
-      <%= form_with model: t, class: 'row p-2' do |f| %>
+<% if @tabs_count >= 1 %>
+  <div class="col-12">
+    <% if @word_count <= 30 %>
+      <%= form_with model: @word_new, class: 'row' do |f| %>
         <div class="form-group mb-1">
-          <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+          <%= f.select :tab_id, @tabs_h, class: "tab_id" %> に登録
         </div>
-        <div class="form-group mb-1">
-          <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+        <div class="form-group">
+          <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
         </div>
       <% end %>
-    </div>
-  <% end %>
-</div>
+    <% else %>
+      <div>
+        登録できるキーワードは30個までです。<br/>
+        新しく登録する場合は既にあるキーワードを削除してください。
+      </div>
+    <% end %>
+  </div>
+
+  <!-- タブ編集form -->
+  <div class="d-flex justify-content-center">
+    <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
+  </div>
+  <div>
+    <% @tabs.each_with_index do |t,i| %>
+      <div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
+        <%= form_with model: t, class: 'row p-2' do |f| %>
+          <div class="form-group mb-1">
+            <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+          </div>
+          <div class="form-group mb-1">
+            <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>上の＋ボタンでタブを作成し、<br/>キーワードを登録してください。</p>
+<% end %>
+
 
 
 
