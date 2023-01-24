@@ -76,7 +76,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   @tab_new.save
   # end
 
-  # private
+
+  private
+
+  def after_update_path_for(resource)
+   user_path(resource)
+  end
 
   # def tab_create
   #   @tab_new = Tab.new
