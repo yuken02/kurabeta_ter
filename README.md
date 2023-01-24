@@ -1,5 +1,7 @@
 # 比べたter
 
+<p align="center"><img src="https://github.com/yuken02/kurabeta_ter/blob/main/app/assets/images/logo1_n.png" alt="nagano_cake" title="nagano_cake_log" width="130" height="130" /></p>
+
 ## 概要
 
 Twitterの投稿を検索しグラフとして表示できるSNS分析サイトです。
@@ -28,6 +30,12 @@ Twitterのキーワードを見比べたい人
 
 ## 設計書
 
+- [ER図](https://drive.google.com/file/d/1aiUKImBytDS4G_pZ1Wb5oBGAghHjXhAD/view?usp=sharing)
+
+- [テーブル定義書](https://drive.google.com/file/d/1e-welKeKK3NShVfg5Oh_iihRbmI_sl_8/view?usp=sharing)
+
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1MpVwpQTHs5tbNy4qejv3PP5XV6Qio3g_PrfrKMANtH0/edit?usp=sharing)
+
 ## 開発環境
 
 - Ruby 3.1.2
@@ -39,3 +47,12 @@ Twitterのキーワードを見比べたい人
 - dotenv-rails
 - device
 - omniauth-twitter
+- omniauth-rails_csrf_protection
+- mysql2
+- devise-i18n
+- devise-i18n-views
+- net-smtp
+- net-pop
+- net-imap
+- pry-byebug
+- pry-rails
