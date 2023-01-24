@@ -3,7 +3,7 @@
     <div class="card mx-auto p-5">
 
       <div class="mx-auto">
-        <h2 class="mb-4">パスワードを再発行</h2>
+        <h2 class="mb-4">パスワードを再設定</h2>
       </div>
 
       <div class="mx-md-5">
@@ -19,13 +19,13 @@
             <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
           </div>
 
-          <div class="field mb-2">
+          <div class="field mb-3">
             <%= f.label :password_confirmation, "新しいパスワードの確認" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
           <div class="actions mb-3">
-            <%= f.submit "パスワードを変更する" %>
+            <%= f.submit "設定する", class: "px-2" %>
           </div>
         <% end %>
 
