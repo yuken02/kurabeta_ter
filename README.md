@@ -1,6 +1,7 @@
 # 比べたter
 
 <p align="center"><img src="https://github.com/yuken02/kurabeta_ter/blob/main/app/assets/images/logo1_n.png" alt="nagano_cake" title="nagano_cake_log" width="130" height="130" /></p>
+http://kurabeta-ter.com/
 
 ## 概要
 
