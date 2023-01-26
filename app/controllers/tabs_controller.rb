@@ -14,7 +14,7 @@ class TabsController < ApplicationController
         redirect_to request.referer
       end
     else
-      redirect_to "/search", notice: "これ以上タブは作れません。"
+      redirect_to "/search", alert: "これ以上タブは作れません"
     end
   end
 
@@ -24,7 +24,23 @@ class TabsController < ApplicationController
     if @tab.update(tab_params)
       redirect_to "/search", notice: "タブの名前を変更しました。"
     else
-      redirect_to request.referer
+      redirect_to request.referer, alert: "変更に失敗しました"
+      # @tab_new = Tab.new
+      # @tabs = Tab.where(user_id: current_user.id)
+      # @tabs_count = @tabs.count
+      # # activerecord_relationを配列に変換
+      # @tabs_h = @tabs.pluck(:name, :id)
+      # @word_new = Keyword.new
+      # @word_count = 0
+      # if Keyword.exists?(tab_id: [@tabs.first])
+      #   @word = Keyword.where(tab_id: [
+      #     @tabs.each do |t|
+      #       t.id
+      #     end
+      #   ])
+      #   @word_count = @word.count
+      # end
+      # render 'searches/index'
     end
   end
 

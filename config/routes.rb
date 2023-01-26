@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   }
 
   root to: 'homes#top'
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get 'about' => 'homes#about'
+  get '/auth/:provider/callback' => 'sessions#create'
   get 'search' => 'searches#index'
   resources :trends, only: [:index]
   resources :tabs, only: [:create, :update]

@@ -7,14 +7,14 @@ class KeywordsController < ApplicationController
       redirect_to search_path, notice: "キーワードを登録しました"
     else
       @keyword = params[:keyword]
-      redirect_to request.referer
+      redirect_to request.referer, alert: "キーワードの登録に失敗しました"
     end
   end
 
   def destroy
     @word = Keyword.find(params[:id])
     @word.destroy
-    redirect_to request.referer
+    redirect_to request.referer, notice: "キーワードを削除しました"
   end
 
 
