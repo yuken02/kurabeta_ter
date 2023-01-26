@@ -43,23 +43,64 @@ body > footer {
 
 /*** トップ ***/
 .top_container {
+  position: relative;
+}
+
+.top_img {
+  height: 50vh;
+  width: 100%;
 	background-image: url("logo1_no_st.png");
 	background-size: contain;
   background-position: center;
-  height: 50vh;
-  width: 100%;
   background-repeat: no-repeat;
-  border-botom: solid 2px black;
+  overflow: hidden;
+  position: relative;
 }
-
-.top_box {
-  // opacity: 0.3;
-  height: 100%;
-  width: 100%;
-  background: rgba(255,255,255,0.9);
+.top_img:before {
+  animation: top_img 2s cubic-bezier(.4, 0, .2, 1) forwards;
+  background: #fff;
+  bottom: 0;
+  content: '';
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+@keyframes top_img {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .top_text {
+  height: 50vh;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.top_text:before {
+  height: 100%;
+  width: 100%;
+  animation-name: top_text;
+  animation-duration: 2s;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  // animation: top_text 2s forwards 3s linear;
+  opacity: 0;
+}
+@keyframes top_text{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 
