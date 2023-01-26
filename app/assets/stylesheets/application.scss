@@ -1,0 +1,116 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/*** ヘッダー ***/
+.navbar-nav .nav-link {
+	border-bottom: 2px solid transparent;
+}
+
+.navbar-nav .nav-link:hover {
+	border-bottom: 2px solid #4682b4;
+}
+
+
+/*** フッターの固定 ***/
+html, body { height: 100%;}
+
+body > footer {
+  position: sticky;
+  top: 100vh;
+}
+
+
+/*** トップ ***/
+.top_box {
+	background-image: url("logo1_s.png");
+	background-size: cover;
+  // background-position: bottom;
+  height: 100%;
+  width: 100%;
+  // background-repeat: no-repeat;
+}
+
+
+/*** トレンドテーブル ***/
+.tw_tr_count {
+	font-size: 14px;
+}
+
+
+/*** タブ機能 ***/
+.tab_btn {
+  margin-bottom: 0;
+}
+
+.tab_box .btn_area {
+	margin:0 10px;
+	display: -webkit-box;
+	display: flex;
+}
+
+.tab_box .tab_btn {
+	width: 188px;
+	padding: 8px 0;
+	color: #333;
+	background: #f5f7f8;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+
+.tab_box .tab_btn + .tab_btn {
+	margin-left: 8px;
+}
+
+.tab_box .tab_btn:hover {
+	background-color: #dce1e4;
+}
+
+.btn_area .tab_btn.active:hover {
+	background: #4682b4;
+}
+
+.tab_box .tab_btn.active {
+  background: #07539f;
+  color: #fff;
+}
+
+.tab_box .panel_area {
+  border: solid 1px #e3ebf3;
+  padding: 20px;
+}
+
+.tab_box .tab_panel {
+  display: none;
+}
+
+.tab_box .tab_panel.active {
+  display: block;
+}
+
+.del_tog {
+	text-size: 80%;
+	display: none;
+	width: 40px;
+}
