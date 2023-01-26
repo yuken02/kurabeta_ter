@@ -42,13 +42,24 @@ body > footer {
 
 
 /*** トップ ***/
+.top_container {
+	background-image: url("logo1_no_st.png");
+	background-size: contain;
+  background-position: center;
+  height: 50vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  border-botom: solid 2px black;
+}
+
 .top_box {
-	background-image: url("logo1_s.png");
-	background-size: cover;
-  // background-position: bottom;
+  // opacity: 0.3;
   height: 100%;
   width: 100%;
-  // background-repeat: no-repeat;
+  background: rgba(255,255,255,0.9);
+}
+
+.top_text {
 }
 
 
