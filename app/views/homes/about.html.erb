@@ -15,7 +15,7 @@
           ログインすることでキーワードを登録し、登録したキーワードを比較することもできます。
         </p>
         <p>
-          Twitterで調べる時にそれぞれのプログラミング言語別で情報量の違いや、その時々のトレンドを調べた際にぱっと見で分かりづらいなと感じていました。<br/>
+          プログラミング言語をTwitterで調べる時にそれぞれの言語別での情報量の違いや、その時々のトレンドを調べた際にぱっと見で分かりづらいなと感じていました。<br/>
           また、同じものを指していても別のワードでツイートされることも多く、どれが多く使われているか分かり難くもありました。<br/>
           比較したいワードを折れ線グラフで表示できるようになれば、それらが見やすく便利だなと思いこのサイトを作成しました。
         </p>
@@ -68,12 +68,7 @@
     setTimeout(update, 35);
   }
 
-  /**
-   * Draw animation function.
-   *
-   * This function draws one frame of the animation, waits 20ms, and then calls
-   * itself again.
-   */
+  /** アニメーション function **/
   function draw(canvas, color) {
     // 対象のcanvasのコンテキストを取得
     var context = canvas.contextCache;
@@ -88,10 +83,7 @@
     drawWave(canvas, color[4], 0.8, 2, 0);
   }
 
-  /**
-  * 波を描画
-  * drawWave(色, 不透明度, 波の幅のzoom, 波の開始位置の遅れ)
-  */
+  /** 波を描画, drawWave(色, 不透明度, 波の幅のzoom, 波の開始位置の遅れ) **/
   function drawWave(canvas, color, alpha, zoom, delay) {
     var context = canvas.contextCache;
     context.strokeStyle = color;//線の色
@@ -102,18 +94,11 @@
     context.stroke(); //線
   }
 
-  /**
-   * Function to draw sine
-   *
-   * The sine curve is drawn in 10px segments starting at the origin.
-   * drawSine(時間, 波の幅のzoom, 波の開始位置の遅れ)
-   */
+  /** drawSine(時間, 波の幅のzoom, 波の開始位置の遅れ) **/
   function drawSine(canvas, t, zoom, delay) {
     var xAxis = Math.floor(canvas.height/2);
     var yAxis = 0;
     var context = canvas.contextCache;
-    // Set the initial x and y, starting at 0,0 and translating to the origin on
-    // the canvas.
     var x = t; //時間を横の位置とする
     var y = Math.sin(x)/zoom;
     context.moveTo(yAxis, unit*y+xAxis); //スタート位置にパスを置く
