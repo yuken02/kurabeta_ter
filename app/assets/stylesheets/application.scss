@@ -82,11 +82,6 @@ body > footer {
   position: absolute;
   top: 0px;
   left: 0px;
-  // animation-name: top_text;
-  // animation-duration: 1s;
-  // animation-delay: 2s;
-  // animation-timing-function: linear;
-  // animation-fill-mode: forwards;
   opacity: 0;
   animation: top_text 1s forwards 1.5s linear;
 }

@@ -12,20 +12,6 @@ class User < ApplicationRecord
     end
   end
 
-  # def self.first_tab
-  #   find_or_create_by!(name: 'タブ') do |tab|
-  #     tab.user_id = current_user.id
-  #   end
-  # end
-
-
-  # after_create do
-  #   @tab_new = Tab.new
-  #   @tab_new.name = 'タブ'
-  #   @tab_new.user_id = current_user.id
-  #   @tab_new.save
-  # end
-
 
   protected
   def self.find_for_oauth(auth)

@@ -65,28 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
 
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  #   # resource.tabs.build
-  #   # resource.tabs.name = 'タブ'
-  #   # resource.save
-  #   @tab_new = Tab.new
-  #   @tab_new.name = 'タブ'
-  #   @tab_new.user_id = current_user.id
-  #   @tab_new.save
-  # end
-
-
   private
 
   def after_update_path_for(resource)
    user_path(resource)
   end
 
-  # def tab_create
-  #   @tab_new = Tab.new
-  #   @tab_new.name = 'タブ'
-  #   @tab_new.user_id = current_user.id
-  #   @tab_new.save
-  # end
 end
