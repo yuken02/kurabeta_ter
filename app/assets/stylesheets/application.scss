@@ -82,24 +82,22 @@ body > footer {
   position: absolute;
   top: 0px;
   left: 0px;
-}
-.top_text:before {
-  height: 100%;
-  width: 100%;
-  animation-name: top_text;
-  animation-duration: 2s;
-  animation-delay: 3s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-  // animation: top_text 2s forwards 3s linear;
+  // animation-name: top_text;
+  // animation-duration: 1s;
+  // animation-delay: 2s;
+  // animation-timing-function: linear;
+  // animation-fill-mode: forwards;
   opacity: 0;
+  animation: top_text 1s forwards 1.5s linear;
 }
-@keyframes top_text{
+@keyframes top_text {
   0% {
     opacity: 0;
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0px);
   }
 }
 
