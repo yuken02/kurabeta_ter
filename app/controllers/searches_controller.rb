@@ -31,22 +31,11 @@ class SearchesController < ApplicationController
       @tab_new = Tab.new
       @tabs = Tab.where(user_id: current_user.id)
       @tabs_count = @tabs.count
-      # activerecord_relationを配列に変換
-      @tabs_h = @tabs.pluck(:name, :id)
 
       ## 登録ワード
       @word_new = Keyword.new
-      @word_count = 0
-      if Keyword.exists?(tab_id: [@tabs.first])
-        @word = Keyword.where(tab_id: [
-          @tabs.each do |t|
-            t.id
-          end
-        ])
-        @word_count = @word.count
-      end
+      @word = Keyword.where(tab_id: @tabs.ids)
     end
-
   end
 
 
