@@ -44,7 +44,7 @@
 <!-- キーワード作成form -->
 <% if @tabs_count >= 1 %>
   <div class="col-12">
-    <% if @word.count <= 30 %>
+    <% if @word.count < 30 %>
       <%= form_with model: @word_new, class: 'row' do |f| %>
         <div class="form-group mb-1">
           <%= f.collection_select(:tab_id, @tabs, :id, :name) %> に登録
@@ -70,7 +70,7 @@
   </div>
   <div>
     <% @tabs.each_with_index do |t,i| %>
-      <div class="col-12 slide_tog card <% if i == 0 %>active<% end %>" style="display:none;">
+      <div class="col-12 slide_tog card<%= i == 0 ? ' active' : '' %>" style="display:none;">
         <%= form_with model: t, class: 'row p-2' do |f| %>
           <div class="form-group mb-1">
             <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
