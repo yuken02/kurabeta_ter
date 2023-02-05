@@ -38,7 +38,7 @@
 
           <div class="field mb-2">
             <%= f.label :current_password %> <i><span style="font-size: 12px;">(変更する際は現在のパスワードが必要です。)</span></i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password" %>
+            <%= f.password_field :current_password, required: true, autocomplete: "current-password" %>
           </div>
 
           <div class="actions mb-4">

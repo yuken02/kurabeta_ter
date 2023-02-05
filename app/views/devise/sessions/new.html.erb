@@ -9,12 +9,12 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field mb-2">
             <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-12" %>
+            <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "col-12" %>
           </div>
 
           <div class="field mb-2">
             <%= f.label :パスワード %><br />
-            <%= f.password_field :password, autocomplete: "current-password", class: "col-12" %>
+            <%= f.password_field :password, required: true, autocomplete: "current-password", class: "col-12" %>
           </div>
 
           <% if devise_mapping.rememberable? %>

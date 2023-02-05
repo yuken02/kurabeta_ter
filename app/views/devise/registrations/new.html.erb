@@ -11,7 +11,7 @@
 
           <div class="field mb-2">
             <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-12" %>
+            <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "col-12" %>
           </div>
 
           <div class="field mb-2">
@@ -19,12 +19,12 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, required: true, autocomplete: "new-password" %>
           </div>
 
           <div class="field mb-3">
             <%= f.label :パスワードの確認 %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
           </div>
 
           <div class="actions mb-3">

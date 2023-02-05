@@ -60,7 +60,7 @@ class SearchesController < ApplicationController
 
     ## チャートdataのtimes用
     if @tweets.include?('data')
-      @tweet_count = @tweets['data'].length
+      @tweet_count_times = @tweets['data'].length
     end
   end
 

@@ -1,4 +1,4 @@
-<canvas id="weekChart"></canvas>
+<canvas id="weekChart" height="200"></canvas>
 
 <script>
   var ctx = document.getElementById("weekChart");
@@ -12,7 +12,7 @@
         {
           label: '<%= @keyword %>',
           data: [
-            <% @tweet_count.times do |i| %>
+            <% @tweet_count_times.times do |i| %>
               <%= @tweets['data'][i]['tweet_count'] %>,
             <% end %>
           ],
@@ -24,7 +24,7 @@
             {
               label: '<%= @comparison[twi] %>',
               data: [
-                <% @tweet_count.times do |i| %>
+                <% @tweet_count_times.times do |i| %>
                   <%= tw['data'][i]['tweet_count'] %>,
                 <% end %>
               ],
@@ -36,15 +36,15 @@
       ],
     },
     options: {
+      responsive: true,
       title: {
         dispray: true,
       },
       scales: {
         yAxes: [{
           ticks: {
-            suggestedMax: 1000,
             suggestedMin: 0,
-            stepSize: 10000,
+            maxTicksLimit: 15,
           }
         }]
       },
