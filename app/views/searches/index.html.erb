@@ -8,7 +8,7 @@
       <% if @keyword %>
         <h2 class="my-2">検索結果: <a href="http://twitter.com/search?q=<%= @keyword %>"><%= @keyword %></a></h2>
         <div>
-          １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'] %> 件
+          １週間の総ツイート数：<%= @tweets['meta']['total_tweet_count'].to_s(:delimited) %> 件
         </div>
         <div>
           <%= render 'chart' %>
@@ -21,8 +21,8 @@
         <div>
           1週間の総ツイート数：
           <% @comparison.each_with_index do |c,i| %>
-            <%= c %>
-            <%= @result_tws[i]['meta']['total_tweet_count'] %> 件 /
+            <%= "「" + c +"」" %>
+            <%= @result_tws[i]['meta']['total_tweet_count'].to_s(:delimited) %> 件 /
           <% end %>
         </div>
         <div>
