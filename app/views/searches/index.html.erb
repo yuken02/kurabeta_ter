@@ -33,13 +33,60 @@
       <% end %>
     </div>
 
+    <!-- サイドバー -->
     <% if user_signed_in? %>
       <div class="sidebar col-md-3">
         <%= render 'searches/tab' %>
       </div>
     <% end %>
   </div>
+
+  <!-- モーダル -->
+  <div class="row">
+    <div class="modalsearch">
+      <div class="modalsearch-close ml-2">
+        <i class="far fa-times-circle"></i>
+      </div>
+        <div class="modalsearch-contents">
+          <%= render 'searches/keywords', word: @word %>
+        </div>
+    </div>
+  </div>
+  <div class="masksearch"></div>
 </div>
 
 
+<!--<div class="masksearch"></div>-->
+<!-- モーダル -->
 
+
+
+<script>
+  $(function() {
+    $('.search-contents').on('click',function(){
+      $('.modalsearch,.masksearch').fadeIn();
+    });
+    $('.modalsearch-close,.masksearch').on('click',function(){
+      $('.modalsearch,.masksearch').fadeOut();
+    });
+  });
+
+  // タブ機能
+  $('.m_tab_box .m_tab_btn').click(function() {
+  	var index = $('.m_tab_box .m_tab_btn').index(this);
+    $('.m_tab_box .m_tab_btn, .m_tab_box .m_tab_panel').removeClass('active');
+    $('.m_slide_tog').removeClass('active');
+  	$(this).addClass('active');
+    $('.m_tab_box .m_tab_panel').eq(index).addClass('active');
+    $('.m_slide_tog').eq(index).addClass('active');
+  });
+</script>
+</div>
+<!-- /モーダル -->
+
+
+<!-- モーダル2 -->
+<!--<div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+
+
+<!-- /モーダル2 -->

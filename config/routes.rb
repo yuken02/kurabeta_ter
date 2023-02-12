@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'about' => 'homes#about'
   get '/auth/:provider/callback' => 'sessions#create'
   get 'search' => 'searches#index'
+  # get 'edit' => 'searches#edit'
   resources :trends, only: [:index]
+  # resources :searches, only: [:edit]
   resources :tabs, only: [:create, :update]
   resources :keywords, only: [:create, :destroy]
   resources :users, only: [:show, :edit, :update]

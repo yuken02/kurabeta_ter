@@ -1,0 +1,96 @@
+<div class="tab_box my-2">
+  <div class="btn_area">
+    <% @tabs.each_with_index do |tab, i| %>
+      <p class="tab_btn<%= i == 0 ? ' active' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
+    <% end %>
+    <% if @tabs_count < 3 %>
+      <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+        <%= f.submit '+', class: 'px-2' %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= form_with url: "/search",method: :get do |f| %>
+    <div class="panel_area mb-2">
+      <% @tabs.each_with_index do |tab, i| %>
+        <div class="tab_panel<%= i == 0 ? ' active' : '' %>">
+          <% if @word %>
+            <% @word.each do |word| %>
+              <% if word.tab_id == tab.id %>
+                <table class="table table-sm table-borderless mb-0">
+                  <tr>
+                    <td>
+                      <%= f.check_box :keywords, {multiple: true}, word.word %>
+                      <%= f.label :word, word.word, class: "m-0" %>
+                    </td>
+                    <td width="20px">
+                      <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", style: "display:none;" %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="panel_area mb-2">
+      <% @tabs.each_with_index do |tab, i| %>
+        <div class="tab_panel<%= i == 0 ? ' active' : '' %>">
+          <% if @word %>
+            <% @word.each do |word| %>
+              <% if word.tab_id == tab.id %>
+                <table class="table table-sm table-borderless mb-0">
+                  <tr>
+                    <td>
+                      <%= word.word, class: "m-0" %>
+                    </td>
+                    <td width="20px">
+                      <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", style: "display:none;" %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+      <%#= form_with model: @recipe, local: false do |f| %>
+        <!--<div class="modal-body">-->
+        <!--  <div class="form-group">-->
+            <%#= f.label :dish_name, "レシピ" %>
+            <%#= f.text_field :dish_name, class: "form-control" %>
+        <!--  </div>-->
+        <!--  <div class="form-group">-->
+            <%#= f.label :cook_method, "作り方" %>
+            <%#= f.text_area :cook_method, class: "form-control" %>
+        <!--  </div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <%#= f.submit "編集する", class: "btn btn-primary" %>
+        <!--</div>-->
+      <%# end %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <% @tabs.each_with_index do |t,i| %>
+    <div class="col-12 slide_tog card<%= i == 0 ? ' active' : '' %>" style="display:none;">
+      <%= form_with model: t, class: 'row p-2' do |f| %>
+        <div class="form-group mb-1">
+          <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
+        </div>
+        <div class="form-group mb-1">
+          <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

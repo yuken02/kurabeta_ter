@@ -38,6 +38,9 @@ class SearchesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
 
   private
 

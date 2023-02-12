@@ -50,7 +50,7 @@
           <%= f.collection_select(:tab_id, @tabs, :id, :name) %> に登録
         </div>
         <div class="form-group">
-          <%= f.text_field :word, placeholder: 'キーワード', class: 'mr-2' %>
+          <%= f.text_field :word, required: true, placeholder: 'キーワード', class: 'mr-2' %>
         </div>
         <div class="form-group">
           <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
@@ -86,6 +86,17 @@
   <p>上の＋ボタンでタブを作成後、<br/>キーワードを登録してください。</p>
   <p>タブは最大3つ、キーワードは合計30個まで登録できます。</p>
 <% end %>
+
+<div class="menu-details">
+  <div class="search-contents">
+    <div class="d-flex justify-content-center">
+      <div class="btn btn-sm btn-secondary px-5 mb-2 menu-content"><i class="fas fa-cog"></i></div>
+    </div>
+  </div>
+</div>
+<div>
+  <%#= link_to '編集', edit_search_path(current_user.id), method: :get, class: "btn btn-secondary btn-sm", remote: true %>
+</div>
 
 
 

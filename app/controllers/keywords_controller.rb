@@ -18,7 +18,7 @@ class KeywordsController < ApplicationController
   def destroy
     @word = Keyword.find(params[:id])
     @word.destroy
-    redirect_to request.referer, notice: "キーワードを削除しました"
+    # redirect_to request.referer, notice: "キーワードを削除しました"
   end
 
 

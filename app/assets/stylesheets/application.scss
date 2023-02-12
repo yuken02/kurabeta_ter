@@ -159,3 +159,137 @@ body > footer {
 	display: none;
 	width: 40px;
 }
+
+/*** モーダルウィンドウ ***/
+.modalsearch {
+  position: fixed;
+  // background-image: image-url("search-title.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+  width: 90vw;
+  height: 70vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  z-index: 2;
+  display: none;
+}
+
+.modalsearch-contents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modalsearch-title {
+  height: 20vh;
+  width: auto;
+  color: rgb(0, 0, 0);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 7vw;
+  text-align: center;
+}
+
+.modalsearch-close {
+  cursor: pointer;
+  font-size: 3vw;
+  height: 4vw;
+}
+
+.search-label {
+  font-family: "M PLUS Rounded 1c";
+  font-size: 1.2vw;
+}
+
+.search-text {
+  width: 25vw;
+  height: 5vh;
+  color: #000000;
+  border: solid 3px #000000;
+  margin: 0.5em;
+  font-size: 1.2vw;
+  background-color: #ffffff33;
+}
+
+.search-submit {
+  width: 15vw;
+  height: 7vh;
+  color: #000000;
+  border: solid 3px #000000;
+  border-radius: 20%;
+  margin: 0.5em;
+  font-size: 1.2vw;
+  background-color: #ff00004f;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.masksearch {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  display: none;
+}
+
+
+.m_tab_btn {
+  margin-bottom: 0;
+}
+
+.m_tab_box .m_btn_area {
+	margin:0 10px;
+	display: -webkit-box;
+	display: flex;
+}
+
+.m_tab_box .m_tab_btn {
+	width: 188px;
+	padding: 8px 0;
+	color: #333;
+	background: #f5f7f8;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+
+.m_tab_box .m_tab_btn + .m_tab_btn {
+	margin-left: 8px;
+}
+
+.m_tab_box .m_tab_btn:hover {
+	background-color: #dce1e4;
+}
+
+.m_btn_area .m_tab_btn.active:hover {
+	background: #4682b4;
+}
+
+.m_tab_box .m_tab_btn.active {
+  background: #07539f;
+  color: #fff;
+}
+
+.m_tab_box .m_panel_area {
+  border: solid 1px #e3ebf3;
+  padding: 20px;
+}
+
+.m_tab_box .m_tab_panel {
+  display: none;
+}
+
+.m_tab_box .m_tab_panel.active {
+  display: block;
+}
+
+.m_del_tog {
+	text-size: 80%;
+	display: none;
+	width: 40px;
+}
