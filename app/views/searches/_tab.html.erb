@@ -45,12 +45,12 @@
 <% if @tabs_count >= 1 %>
   <div class="col-12">
     <% if @word.count < 30 %>
-      <%= form_with model: @word_new, class: 'row' do |f| %>
+      <%= form_with model: @word_new, local: false, class: 'row' do |f| %>
         <div class="form-group mb-1 mr-2">
           <%= f.collection_select(:tab_id, @tabs, :id, :name) %> に登録
         </div>
         <div class="form-group">
-          <%= f.text_field :word, required: true, placeholder: 'キーワード', class: 'mr-2' %>
+          <%= f.text_field :word, required: true, placeholder: 'キーワード', class: 'mr-2 text_field' %>
         </div>
         <div class="form-group">
           <%= f.submit '登録', class: 'btn btn-sm btn-info' %>

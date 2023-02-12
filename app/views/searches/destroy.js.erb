@@ -3,3 +3,4 @@
 <!--$("tr#keyword_<%#= word.id %>").remove();-->
 <!--$("#keyword_<%#= word.id %>").html("<%#= j(render @word) %>")-->
 <!--$('#keyword_<%#= word.id %>').html("<%#= j(render "searches/keywords", word: @word) %>");-->
+$('#keywords').html("<%= j(render "searches/keywords", word: @word) %>");
