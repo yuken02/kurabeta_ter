@@ -39,7 +39,7 @@
         <!--<div class="tab_box my-2">-->
         <!--  <%#= render 'searches/keywords', word: @word %>-->
         <!--</div>-->
-        <%= render 'searches/tab' %>
+        <%= render 'searches/tab', tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word, word_new: @word_new %>
       </div>
     <% end %>
   </div>
@@ -51,7 +51,7 @@
         <i class="far fa-times-circle"></i>
       </div>
         <div class="modalsearch-contents" id="keywords">
-          <%= render 'searches/mod_keywords', word: @word %>
+          <%= render "searches/mod_keywords", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word %>
         </div>
     </div>
   </div>

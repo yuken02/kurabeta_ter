@@ -1,10 +1,10 @@
 <div class="tab_box my-2">
   <div class="btn_area">
-    <% @tabs.each_with_index do |tab, i| %>
+    <% tabs.each_with_index do |tab, i| %>
       <p class="tab_btn<%= i == 0 ? ' active' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
     <% end %>
-    <% if @tabs_count < 3 %>
-      <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+    <% if tabs_count < 3 %>
+      <%= form_with model: tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
         <%= f.submit '+', class: 'px-2' %>
       <% end %>
     <% end %>
@@ -12,10 +12,10 @@
 
   <%= form_with url: "/search",method: :get do |f| %>
     <div class="panel_area mb-2">
-      <% @tabs.each_with_index do |tab, i| %>
+      <% tabs.each_with_index do |tab, i| %>
         <div class="tab_panel<%= i == 0 ? ' active' : '' %>">
-          <% if @word %>
-            <% @word.each do |word| %>
+          <% if word %>
+            <% word.each do |word| %>
               <% if word.tab_id == tab.id %>
                 <table class="table table-sm table-borderless mb-0">
                   <tr>
@@ -42,12 +42,12 @@
 </div>
 
 <!-- キーワード作成form -->
-<% if @tabs_count >= 1 %>
+<% if tabs_count >= 1 %>
   <div class="col-12">
-    <% if @word.count < 30 %>
-      <%= form_with model: @word_new, local: false, class: 'row' do |f| %>
+    <% if word.count < 30 %>
+      <%= form_with model: word_new, local: false, class: 'row' do |f| %>
         <div class="form-group mb-1 mr-2">
-          <%= f.collection_select(:tab_id, @tabs, :id, :name) %> に登録
+          <%= f.collection_select(:tab_id, tabs, :id, :name) %> に登録
         </div>
         <div class="form-group">
           <%= f.text_field :word, required: true, placeholder: 'キーワード', class: 'mr-2 text_field' %>
@@ -69,7 +69,7 @@
     <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
   </div>
   <div>
-    <% @tabs.each_with_index do |t,i| %>
+    <% tabs.each_with_index do |t,i| %>
       <div class="col-12 slide_tog card<%= i == 0 ? ' active' : '' %>" style="display:none;">
         <%= form_with model: t, class: 'row p-2' do |f| %>
           <div class="form-group mb-1">

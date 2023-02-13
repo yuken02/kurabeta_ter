@@ -1,10 +1,10 @@
 <div class="m_tab_box my-2 col-md-8 col-sm-12">
   <div class="m_btn_area">
-    <% @tabs.each_with_index do |tab, i| %>
+    <% tabs.each_with_index do |tab, i| %>
       <p class="m_tab_btn<%= i == 0 ? ' active' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
     <% end %>
-    <% if @tabs_count < 3 %>
-      <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+    <% if tabs_count < 3 %>
+      <%= form_with model: tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
         <%= f.submit '+', class: 'px-2' %>
       <% end %>
     <% end %>
@@ -12,7 +12,7 @@
 
 
   <div class="m_panel_area mb-2 overflow-auto" style="height: 50vh;">
-    <% @tabs.each_with_index do |tab, i| %>
+    <% tabs.each_with_index do |tab, i| %>
       <div class="m_tab_panel<%= i == 0 ? ' active' : '' %> overflow-y-auto">
         <% if word %>
           <% word.each do |word| %>

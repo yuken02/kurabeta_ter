@@ -1,9 +1,9 @@
 <div class="btn_area">
-    <% @tabs.each_with_index do |tab, i| %>
+    <% tabs.each_with_index do |tab, i| %>
       <p class="tab_btn<%= i == 0 ? ' active' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
     <% end %>
-    <% if @tabs_count < 3 %>
-      <%= form_with model: @tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+    <% if tabs_count < 3 %>
+      <%= form_with model: tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
         <%= f.submit '+', class: 'px-2' %>
       <% end %>
     <% end %>
@@ -11,10 +11,10 @@
 
   <%= form_with url: "/search",method: :get do |f| %>
     <div class="panel_area mb-2">
-      <% @tabs.each_with_index do |tab, i| %>
+      <% tabs.each_with_index do |tab, i| %>
         <div class="tab_panel<%= i == 0 ? ' active' : '' %>">
-          <% if @word %>
-            <% @word.each do |word| %>
+          <% if word %>
+            <% word.each do |word| %>
               <% if word.tab_id == tab.id %>
                 <table class="table table-sm table-borderless mb-0">
                   <tr>
