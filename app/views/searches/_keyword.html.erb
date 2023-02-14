@@ -1,7 +1,9 @@
 <% words.each do |word| %>
     <tr>
       <td style="width:1px;">
-        <i class="fas fa-ellipsis-v edit edit_tog" style="display:none;"></i>
+        <span class="edit edit_tog">
+          <i class="fas fa-ellipsis-v"></i>
+        </span>
       </td>
       <td class="mx-0 px-0">
         <span class="edit edit_tog"><%= word.word %></span>
