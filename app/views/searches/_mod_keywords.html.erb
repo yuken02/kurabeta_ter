@@ -15,9 +15,9 @@
     <% tabs.each_with_index do |tab, i| %>
       <div class="m_tab_panel<%= i == 0 ? ' active' : '' %> overflow-y-auto">
         <% if word %>
-          <% word.each do |word| %>
-            <% if word.tab_id == tab.id %>
-              <table class="table table-hover table-sm table-borderless mb-0">
+          <table class="table table-hover table-sm table-borderless mb-0">
+            <% word.each do |word| %>
+              <% if word.tab_id == tab.id %>
                 <tr id="keyword_<%= word.id %>">
                   <td class="" style="width:20px;">
                     <i class="fas fa-ellipsis-v"></i>
@@ -29,9 +29,9 @@
                     <%= link_to '削除', keyword_path(word.id), method: :delete, class: "del_tog btn btn-sm btn-danger p-1 ml-auto", remote: true, data: { confirm: '削除しますか？'} %>
                   </td>
                 </tr>
-              </table>
+              <% end %>
             <% end %>
-          <% end %>
+          </table>
         <% end %>
       </div>
     <% end %>

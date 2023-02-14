@@ -143,7 +143,7 @@ body > footer {
 
 .tab_box .panel_area {
   border: solid 1px #e3ebf3;
-  padding: 20px;
+  padding: 10px;
 }
 
 .tab_box .tab_panel {
@@ -152,6 +152,10 @@ body > footer {
 
 .tab_box .tab_panel.active {
   display: block;
+}
+
+.edit_tog {
+  display: none;
 }
 
 .del_tog {
@@ -235,61 +239,4 @@ body > footer {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1;
   display: none;
-}
-
-
-.m_tab_btn {
-  margin-bottom: 0;
-}
-
-.m_tab_box .m_btn_area {
-	margin:0 10px;
-	display: -webkit-box;
-	display: flex;
-}
-
-.m_tab_box .m_tab_btn {
-	width: 188px;
-	padding: 8px 0;
-	color: #333;
-	background: #f5f7f8;
-	text-align: center;
-	cursor: pointer;
-	transition: all 0.2s ease 0s;
-}
-
-.m_tab_box .m_tab_btn + .m_tab_btn {
-	margin-left: 8px;
-}
-
-.m_tab_box .m_tab_btn:hover {
-	background-color: #dce1e4;
-}
-
-.m_btn_area .m_tab_btn.active:hover {
-	background: #4682b4;
-}
-
-.m_tab_box .m_tab_btn.active {
-  background: #07539f;
-  color: #fff;
-}
-
-.m_tab_box .m_panel_area {
-  border: solid 1px #e3ebf3;
-  padding: 20px;
-}
-
-.m_tab_box .m_tab_panel {
-  display: none;
-}
-
-.m_tab_box .m_tab_panel.active {
-  display: block;
-}
-
-.m_del_tog {
-	text-size: 80%;
-	display: none;
-	width: 40px;
 }

@@ -34,7 +34,7 @@ class SearchesController < ApplicationController
 
       ## 登録ワード
       @word_new = Keyword.new
-      @word = Keyword.where(tab_id: @tabs.ids)
+      @words = Keyword.where(tab_id: @tabs.ids)
     end
   end
 

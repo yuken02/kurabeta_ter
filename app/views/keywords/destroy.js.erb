@@ -1,6 +1,3 @@
-<!--$("#keyword_<%#= word.id %>").html("<%#= j(render 'searches/keywords', word: word) %>");-->
-<!--$("#keyword_<%#= word.id %>").remove();-->
-<!--$("tr#keyword_<%#= word.id %>").remove();-->
-<!--$("#keyword_<%#= word.id %>").html("<%#= j(render @word) %>")-->
-<!--$('#keyword_<%#= word.id %>').html("<%#= j(render "searches/keywords", word: @word) %>");-->
-$('#keywords').html("<%= j(render "searches/mod_keywords", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word) %>");
+$('.keywords-<%=@tab.id%>').html("<%= j(render "searches/keyword", words: @words) %>");
+
+$(".keywords-<%=@tab.id%> .edit").toggle();

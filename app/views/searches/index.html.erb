@@ -36,10 +36,7 @@
     <!-- サイドバー -->
     <% if user_signed_in? %>
       <div class="sidebar col-md-3">
-        <!--<div class="tab_box my-2">-->
-        <!--  <%#= render 'searches/keywords', word: @word %>-->
-        <!--</div>-->
-        <%= render 'searches/tab', tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word, word_new: @word_new %>
+        <%= render 'searches/sideber', tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words, word_new: @word_new %>
       </div>
     <% end %>
   </div>
@@ -50,46 +47,64 @@
       <div class="modalsearch-close ml-2">
         <i class="far fa-times-circle"></i>
       </div>
-        <div class="modalsearch-contents" id="keywords">
-          <%= render "searches/mod_keywords", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word %>
-        </div>
+      <div class="modalsearch-contents">
+        <%= render "searches/tabform", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words %>
+      </div>
     </div>
   </div>
   <div class="masksearch"></div>
+  <!-- /モーダル -->
 </div>
-
-
-<!--<div class="masksearch"></div>-->
-<!-- モーダル -->
 
 
 
 <script>
+  // モーダル
   $(function() {
+    var index = $('.tab_box .tab_btn').index(this);
     $('.search-contents').on('click',function(){
       $('.modalsearch,.masksearch').fadeIn();
+      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+      $('.f_tab').addClass('active');
     });
     $('.modalsearch-close,.masksearch').on('click',function(){
       $('.modalsearch,.masksearch').fadeOut();
+      $(".edit").toggle(200);
+      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+      $('.f_tab').addClass('active');
     });
   });
 
   // タブ機能
-  $('.m_tab_box .m_tab_btn').click(function() {
-  	var index = $('.m_tab_box .m_tab_btn').index(this);
-    $('.m_tab_box .m_tab_btn, .m_tab_box .m_tab_panel').removeClass('active');
-    $('.m_slide_tog').removeClass('active');
+  $('.tab_box .tab_btn').click(function() {
+  	var index = $('.tab_box .tab_btn').index(this);
+  	console.log(index);
+  	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+  	$('.slide_tog').removeClass('active');
   	$(this).addClass('active');
-    $('.m_tab_box .m_tab_panel').eq(index).addClass('active');
-    $('.m_slide_tog').eq(index).addClass('active');
+  	$('.tab_box .tab_panel').eq(index).addClass('active');
+  	$('.slide_tog').eq(index).addClass('active');
+  	$("input[name='keywords[]']").prop('checked', false);  //全チェック解除
+  });
+
+  // タブ機能
+  // $('.m_tab_box .m_tab_btn').click(function() {
+  // 	var index = $('.m_tab_box .m_tab_btn').index(this);
+  //   $('.m_tab_box .m_tab_btn, .m_tab_box .m_tab_panel').removeClass('active');
+  //   $('.m_slide_tog').removeClass('active');
+  // 	$(this).addClass('active');
+  //   $('.m_tab_box .m_tab_panel').eq(index).addClass('active');
+  //   $('.m_slide_tog').eq(index).addClass('active');
+  // });
+
+  // 登録キーワード削除表示・非表示
+  $(function(){
+    $(".edit_btn").click(function() {
+      $(".edit").toggle();
+      $('.f_tab').addClass('active');
+      // $('.m_slide_tog').eq(index).addClass('active');
+    });
   });
 </script>
 </div>
 <!-- /モーダル -->
-
-
-<!-- モーダル2 -->
-<!--<div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
-
-
-<!-- /モーダル2 -->

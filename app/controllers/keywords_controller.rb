@@ -13,19 +13,22 @@ class KeywordsController < ApplicationController
         redirect_to request.referer, alert: "キーワードの登録に失敗しました"
       end
     end
+    @tab = @word_new.tab
+
     @tabs = Tab.where(user_id: current_user.id)
     @tabs_count = @tabs.count
     @tab_new = Tab.new
-    @word = Keyword.where(tab_id: @tabs.ids)
+    @words = Keyword.where(tab_id: @word_new.tab_id)
   end
 
   def destroy
     word = Keyword.find(params[:id])
+    @tab = word.tab
     word.destroy
     @tabs = Tab.where(user_id: current_user.id)
     @tabs_count = @tabs.count
     @tab_new = Tab.new
-    @word = Keyword.where(tab_id: @tabs.ids)
+    @words = Keyword.where(tab_id: @tab.id)
     # redirect_to request.referer, notice: "キーワードを削除しました"
   end
 

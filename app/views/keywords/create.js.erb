@@ -1,2 +1,3 @@
-  $('.sidebar').html("<%= j(render 'searches/tab', tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, word: @word, word_new: @word_new) %>");
-<!--$("text_field").val('');-->
+$('.keywords-<%=@tab.id%>').html("<%= j(render "searches/keyword", words: @words) %>");
+$(".text_field").val('');
+
