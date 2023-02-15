@@ -1,6 +1,6 @@
 <div class="tab_box">
   <% tabs.each_with_index do |t,i| %>
-    <div class="col-12 tab_panel card<%= i == 0 ? ' active f_tab' : '' %>" style="display:none;">
+    <div class="col-12 tab_panel<%= i == 0 ? ' active f_tab' : '' %>">
       <%= form_with model: t, class: 'row p-2' do |f| %>
         <div class="form-group mb-1">
           <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>

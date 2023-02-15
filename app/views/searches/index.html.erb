@@ -2,7 +2,7 @@
   <div class="row my-3 justify-content-center">
     <%= render 'layouts/main_head' %>
   </div>
-<%= @comparison %>
+
   <div class="row">
     <div class="col-md-9 tweet_chart">
       <% if @keyword %>
@@ -47,11 +47,8 @@
       <div class="modalsearch-close ml-2">
         <i class="far fa-times-circle"></i>
       </div>
-      <div class="modalsearch-contents">
+      <div class="modalsearch-contents mx-auto col-md-6">
         <%= render "searches/keywordform", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words %>
-      </div>
-      <div class="modalsearch-contents">
-        <%= render "searches/tabform", tabs: @tabs %>
       </div>
     </div>
   </div>
@@ -67,13 +64,13 @@
     var index = $('.tab_box .tab_btn').index(this);
     $('.search-contents').on('click',function(){
       $('.modalsearch,.masksearch').fadeIn();
-      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+      $('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
       $('.f_tab').addClass('active');
     });
     $('.modalsearch-close,.masksearch').on('click',function(){
       $('.modalsearch,.masksearch').fadeOut();
       $(".edit").toggle(200);
-      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+      $('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
       $('.f_tab').addClass('active');
     });
   });
@@ -82,12 +79,12 @@
   $('.tab_box .tab_btn').click(function() {
   	var index = $('.tab_box .tab_btn').index(this);
   	console.log(index);
-  	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+  	$('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
   	$('.slide_tog').removeClass('active');
   	$(this).addClass('active');
-  	$('.tab_box .tab_panel').eq(index).addClass('active');
+  	$('.tab_box .tab_panel, .tab_box .tab_edit').eq(index).addClass('active');
   	$('.slide_tog').eq(index).addClass('active');
-  	$("input[name='keywords[]']").prop('checked', false);  //全チェック解除
+  	$("input[type='checkbox']").prop('checked', false);  //全チェック解除
   });
 
   // 登録キーワード削除表示・非表示

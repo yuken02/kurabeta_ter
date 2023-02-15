@@ -14,7 +14,6 @@ class SearchesController < ApplicationController
       @user = current_user
 
       ## 比較(チェックボックス)
-      # @comparison = []
       @comparison = params[:keywords]&.values
       if @comparison
         @result_tws = []
@@ -34,9 +33,6 @@ class SearchesController < ApplicationController
       @word_new = Keyword.new
       @words = Keyword.where(tab_id: @tabs.ids)
     end
-  end
-
-  def edit
   end
 
 

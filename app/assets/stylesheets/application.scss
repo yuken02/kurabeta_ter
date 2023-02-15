@@ -154,6 +154,14 @@ body > footer {
   display: block;
 }
 
+.tab_box .tab_edit {
+  display: none;
+}
+
+.tab_box .tab_edit.active {
+  display: block;
+}
+
 .edit_tog {
   display: none;
 }
