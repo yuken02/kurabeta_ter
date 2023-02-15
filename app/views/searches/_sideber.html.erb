@@ -1,4 +1,4 @@
-<%= render "searches/tabform", tabs: tabs, tabs_count: tabs_count, tab_new: tab_new, words: words %>
+<%= render "searches/keywordform", tabs: tabs, tabs_count: tabs_count, tab_new: tab_new, words: words %>
 
 <!-- キーワード作成form -->
 <% if tabs_count >= 1 %>
@@ -44,7 +44,7 @@
 <!--<%# else %>-->
 <!--  <p>上の＋ボタンでタブを作成後、<br/>キーワードを登録してください。</p>-->
 <!--  <p>タブは最大3つ、キーワードは合計30個まで登録できます。</p>-->
-<!--<% end %>-->
+<% end %>
 
 <div class="menu-details">
   <div class="search-contents">
@@ -85,8 +85,3 @@
   //   });
   // });
 </script>
-
-
-
-
-</div>

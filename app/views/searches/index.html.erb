@@ -2,7 +2,7 @@
   <div class="row my-3 justify-content-center">
     <%= render 'layouts/main_head' %>
   </div>
-
+<%= @comparison %>
   <div class="row">
     <div class="col-md-9 tweet_chart">
       <% if @keyword %>
@@ -14,7 +14,7 @@
           <%= render 'chart' %>
         </div>
       <% elsif @comparison %>
-        <h2 class="my-2">検索結果: <% @comparison.each_with_index do |c,i| %>
+        <h2 class="my-2">検索結果: <% @comparison.each_with_index do |c, i| %>
             <a href="http://twitter.com/search?q=<%= c %>"><%= c %></a>/
           <% end %>
         </h2>
@@ -48,7 +48,10 @@
         <i class="far fa-times-circle"></i>
       </div>
       <div class="modalsearch-contents">
-        <%= render "searches/tabform", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words %>
+        <%= render "searches/keywordform", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words %>
+      </div>
+      <div class="modalsearch-contents">
+        <%= render "searches/tabform", tabs: @tabs %>
       </div>
     </div>
   </div>

@@ -14,13 +14,15 @@ class SearchesController < ApplicationController
       @user = current_user
 
       ## 比較(チェックボックス)
-      @comparison = params[:keywords]
+      # @comparison = []
+      @comparison = params[:keywords]&.values
       if @comparison
-        if @comparison.include?("0")
-          @comparison.delete("0")
-        end
+        # if @comparison.include?("0")
+          # @comparison.delete("0")
+        # end
         @result_tws = []
-        @comparison.each_with_index do |c,i|
+        # @comparison.each_with_index do |c,i|
+        @comparison.each do |c|
           search_keyword(c)
           @result_tws << @tweets
         end
