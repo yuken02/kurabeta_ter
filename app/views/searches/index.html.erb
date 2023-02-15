@@ -64,13 +64,13 @@
     var index = $('.tab_box .tab_btn').index(this);
     $('.search-contents').on('click',function(){
       $('.modalsearch,.masksearch').fadeIn();
-      $('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
+      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
       $('.f_tab').addClass('active');
     });
     $('.modalsearch-close,.masksearch').on('click',function(){
       $('.modalsearch,.masksearch').fadeOut();
       $(".edit").toggle(200);
-      $('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
+      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
       $('.f_tab').addClass('active');
     });
   });
@@ -82,7 +82,8 @@
   	$('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
   	$('.slide_tog').removeClass('active');
   	$(this).addClass('active');
-  	$('.tab_box .tab_panel, .tab_box .tab_edit').eq(index).addClass('active');
+  	$('.tab_box .tab_panel').eq(index).addClass('active');
+  	$('.tab_box .tab_edit').eq(index).addClass('active');
   	$('.slide_tog').eq(index).addClass('active');
   	$("input[type='checkbox']").prop('checked', false);  //全チェック解除
   });
