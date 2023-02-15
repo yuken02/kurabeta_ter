@@ -90,22 +90,11 @@
   	$("input[name='keywords[]']").prop('checked', false);  //全チェック解除
   });
 
-  // タブ機能
-  // $('.m_tab_box .m_tab_btn').click(function() {
-  // 	var index = $('.m_tab_box .m_tab_btn').index(this);
-  //   $('.m_tab_box .m_tab_btn, .m_tab_box .m_tab_panel').removeClass('active');
-  //   $('.m_slide_tog').removeClass('active');
-  // 	$(this).addClass('active');
-  //   $('.m_tab_box .m_tab_panel').eq(index).addClass('active');
-  //   $('.m_slide_tog').eq(index).addClass('active');
-  // });
-
   // 登録キーワード削除表示・非表示
   $(function(){
     $(".edit_btn").click(function() {
       $(".edit").toggle();
       $('.f_tab').addClass('active');
-      // $('.m_slide_tog').eq(index).addClass('active');
     });
   });
 </script>

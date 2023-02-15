@@ -13,18 +13,16 @@
   <%= form_with url: "/search",method: :get do |f| %>
     <div class="panel_area mb-2 overflow-auto" style="height: 50vh;">
       <% tabs.each_with_index do |tab, i| %>
-      <% tab_words = words.where(tab_id: tab.id) %>
+        <% tab_words = words.where(tab_id: tab.id) %>
         <div class="tab_panel<%= i == 0 ? ' active f_tab' : '' %> overflow-y-auto">
-          <%# if tab_words.any? %>
-            <table class="table table-hover table-sm table-borderless keywords-<%=tab.id%> mb-0">
-                  <%= render "searches/keyword", words: tab_words %>
-            </table>
-          <%# end %>
+          <table class="table table-hover table-sm table-borderless keywords_<%= tab.id %> mb-0">
+            <%= render "searches/keyword", words: tab_words %>
+          </table>
         </div>
       <% end %>
-    </div><div class="mb-4 d-flex justify-content-center">
+    </div>
+    <div class="mb-4 d-flex justify-content-center">
       <button title="検索" type="submit" class="btn btn-sm btn-info px-5 edit">比べる</button>
     </div>
   <% end %>
-
 </div>

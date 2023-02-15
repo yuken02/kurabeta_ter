@@ -10,8 +10,6 @@
       </td>
       <td class="mx-0 px-0">
         <span class="edit">
-          <%#= check_box :keywords, {multiple: true}, word.word, nil %>
-          <%#= label :word, word.word, class: "edit m-0" %>
           <%= check_box_tag "keywords[#{i}]", word.word %>
           <%= label_tag "keywords[#{i}]", word.word, class: "edit m-0" %>
         </span>
@@ -21,47 +19,3 @@
       </td>
     </tr>
 <% end %>
-<%#= collection_check_boxes(:words, :keywords, words, word, word) do |b| %>
-  <%#= b.label {b.check_box + b.word } %>
-<%# end %>
-<%#= collection_check_boxes(:words, :keywords, words, :word, :word, include_hidden: false) %>
-
-<!--<%#= form_with url: "/search",method: :get do |f| %>-->
-<!--  <div class="panel_area mb-2 overflow-auto" style="height: 50vh;">-->
-<!--    <%# tabs.each_with_index do |tab, i| %>-->
-    <%# tab_words = words.where(tab_id: tab.id) %>
-<!--      <div class="tab_panel<%#= i == 0 ? ' active f_tab' : '' %> overflow-y-auto">-->
-        <%# if tab_words.any? %>
-<!--          <table class="table table-hover table-sm table-borderless keywords-<%#=tab.id%> mb-0">-->
-<!--            <%# words.each do |word| %>-->
-<!--              <%# if word.tab_id == tab.id %>-->
-<!--                <tr>-->
-<!--                  <td style="width:1px;">-->
-<!--                    <span class="edit edit_tog">-->
-<!--                      <i class="fas fa-ellipsis-v"></i>-->
-<!--                    </span>-->
-<!--                  </td>-->
-<!--                  <td class="mx-0 px-0">-->
-<!--                    <span class="edit edit_tog"><%#= word.word %></span>-->
-<!--                  </td>-->
-<!--                  <td class="mx-0 px-0">-->
-<!--                    <span class="edit">-->
-<!--                      <%#= f.check_box :keywords, {multiple: true}, word.word, nil %>-->
-<!--                      <%#= f.label :word, word.word, class: "edit m-0" %>-->
-                      <%#= check_box_tag :keywords, word.word %>
-                      <%#= label_tag :word, word.word, class: "edit m-0" %>
-<!--                    </span>-->
-<!--                  </td>-->
-<!--                  <td width="20px">-->
-<!--                    <%#= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "edit edit_tog del_tog btn btn-sm btn-danger p-1 ml-auto", remote: true, style: "display:none;" %>-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--              <%# end %>-->
-<!--            <%# end %>-->
-<!--          </table>-->
-<!--      </div>-->
-<!--    <%# end %>-->
-<!--  </div><div class="mb-4 d-flex justify-content-center">-->
-<!--    <button title="検索" type="submit" class="btn btn-sm btn-info px-5 edit">比べる</button>-->
-<!--  </div>-->
-<!--<%# end %>-->
