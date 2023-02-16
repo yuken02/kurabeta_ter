@@ -4,8 +4,11 @@
     <% tabs&.each_with_index do |tab, i| %>
       <p class="tab_btn<%= i == 0 ? ' active f_tab' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
     <% end %>
-    <div><%= tabs_count %></div>
-
+    <% if tabs_count <= 2 %>
+      <%= form_with model: tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+        <%= f.submit '+', class: 'px-2' %>
+      <% end %>
+    <% end %>
   </div>
 
   <!-- タブ編集フォーム -->
