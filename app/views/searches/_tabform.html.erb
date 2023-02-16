@@ -1,7 +1,20 @@
-<div class="tab_box">
+<!-- タブボタン -->
+<div class="btn_area">
+  <% tabs.each_with_index do |tab, i| %>
+    <p class="tab_btn<%= i == 0 ? ' active f_tab' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
+  <% end %>
+  <% if tabs_count < 3 %>
+    <%= form_with model: tab_new, local: true, class: 'ml-2 d-flex align-item-end' do |f| %>
+      <%= f.submit '+', class: 'px-2' %>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- タブ編集フォーム -->
+<div class="tab_form edit edit_tog">
   <% tabs.each_with_index do |t,i| %>
-    <div class="col-12 tab_panel<%= i == 0 ? ' active f_tab' : '' %>">
-      <%= form_with model: t, class: 'row p-2' do |f| %>
+    <div class="col-12 tab_edit<%= i == 0 ? ' active f_tab' : '' %>">
+      <%= form_with model: t, local: false, class: 'row p-2' do |f| %>
         <div class="form-group mb-1">
           <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
         </div>

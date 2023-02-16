@@ -1,17 +1,19 @@
-<%= render "searches/keywordform", tabs: tabs, tabs_count: tabs_count, tab_new: tab_new, words: words %>
+<div class="keywordform">
+  <%= render "searches/keywordform", tabs: tabs, tabs_count: tabs_count, tab_new: tab_new, words: words %>
+</div>
 
 <!-- キーワード作成form -->
 <% if tabs_count >= 1 %>
-  <div class="col-12">
+  <div class="col-12 mb-3">
     <% if words.count < 30 %>
       <%= form_with model: word_new, local: false, class: 'row' do |f| %>
         <div class="form-group mb-1 mr-2">
           <%= f.collection_select(:tab_id, tabs, :id, :name) %> に登録
         </div>
-        <div class="form-group form_word">
+        <div class="form-group form_word mb-1">
           <%= f.text_field :word, required: true, placeholder: 'キーワード', class: 'mr-2 text_field' %>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-1">
           <%= f.submit '登録', class: 'btn btn-sm btn-info' %>
         </div>
       <% end %>
@@ -22,66 +24,15 @@
       </div>
     <% end %>
   </div>
-
-  <!-- タブ編集form -->
-<!--  <div class="d-flex justify-content-center">-->
-<!--    <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <%# tabs.each_with_index do |t,i| %>-->
-<!--      <div class="col-12 slide_tog card<%#= i == 0 ? ' active' : '' %>" style="display:none;">-->
-<!--        <%#= form_with model: t, class: 'row p-2' do |f| %>-->
-<!--          <div class="form-group mb-1">-->
-<!--            <%#= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>-->
-<!--          </div>-->
-<!--          <div class="form-group mb-1">-->
-<!--            <%#= f.submit '変更', class: 'btn btn-sm btn-info' %>-->
-<!--          </div>-->
-<!--        <%# end %>-->
-<!--      </div>-->
-<!--    <%# end %>-->
-<!--  </div>-->
-<!--<%# else %>-->
-<!--  <p>上の＋ボタンでタブを作成後、<br/>キーワードを登録してください。</p>-->
-<!--  <p>タブは最大3つ、キーワードは合計30個まで登録できます。</p>-->
+<% else %>
+  <div>
+    <p>上の＋ボタンでタブを作成後、<br/>キーワードを登録してください。</p>
+    <p>タブは最大3つ、キーワードは合計30個まで登録できます。</p>
+  </div>
 <% end %>
 
-<div class="menu-details">
-  <div class="search-contents">
-    <div class="d-flex justify-content-center">
-      <div class="edit_btn btn btn-sm btn-secondary px-5 mb-2"><i class="fas fa-cog"></i></div>
-    </div>
+<div class="menu-details d-flex justify-content-center">
+  <div class="search-contents btn btn-sm btn-secondary px-5 mb-2">
+    <i class="fas fa-cog"></i>
   </div>
 </div>
-
-
-
-
-
-<!----- jQuery ----->
-<script>
-  // タブ機能
-  $('.tab_box .tab_btn').click(function() {
-  	var index = $('.tab_box .tab_btn').index(this);
-  	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
-  	$('.slide_tog').removeClass('active');
-  	$(this).addClass('active');
-  	$('.tab_box .tab_panel').eq(index).addClass('active');
-  	$('.slide_tog').eq(index).addClass('active');
-  	$("input[name='keywords[]']").prop('checked', false);  //全チェック解除
-  });
-
-  // タブ編集表示・非表示
-  // $(function(){
-  //   $(".edit_btn").click(function() {
-  //     $(".slide_tog").slideToggle();
-  //   });
-  // });
-
-  // 登録キーワード削除表示・非表示
-  // $(function(){
-  //   $(".edit_btn").click(function() {
-  //     $(".edit").toggle();
-  //   });
-  // });
-</script>

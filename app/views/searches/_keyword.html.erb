@@ -1,21 +1,21 @@
 <% words.each_with_index do |word,i| %>
-    <tr>
-      <td style="width:1px;">
-        <span class="edit edit_tog">
-          <i class="fas fa-ellipsis-v"></i>
-        </span>
-      </td>
-      <td class="mx-0 px-0">
-        <span class="edit edit_tog"><%= word.word %></span>
-      </td>
-      <td class="mx-0 px-0">
-        <span class="edit">
-          <%= check_box_tag "keywords[#{i}]", word.word %>
-          <%= label_tag "keywords[#{i}]", word.word, class: "edit m-0" %>
-        </span>
-      </td>
-      <td width="20px">
-        <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "edit edit_tog del_tog btn btn-sm btn-danger p-1 ml-auto", remote: true, style: "display:none;" %>
-      </td>
-    </tr>
+  <tr>
+    <td style="width:1px;">
+      <span class="edit edit_tog">
+        <i class="fas fa-ellipsis-v"></i>
+      </span>
+    </td>
+    <td class="mx-0 px-0">
+      <span class="edit edit_tog"><%= word.word %></span>
+    </td>
+    <td class="mx-0 px-0">
+      <span class="edit">
+        <%= check_box_tag "keywords[#{i}]", word.word %>
+        <%= label_tag "keywords[#{i}]", word.word, class: "edit m-0" %>
+      </span>
+    </td>
+    <td width="20px">
+      <%= link_to '削除', word, method: :delete, data: { confirm: '削除しますか？'}, class: "edit edit_tog del_tog btn btn-sm btn-danger p-1 ml-auto", remote: true, style: "display:none;" %>
+    </td>
+  </tr>
 <% end %>

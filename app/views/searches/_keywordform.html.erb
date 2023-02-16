@@ -1,4 +1,5 @@
 <div class="tab_box col-sm-12 my-2 px-0">
+  <!-- タブボタン -->
   <div class="btn_area">
     <% tabs.each_with_index do |tab, i| %>
       <p class="tab_btn<%= i == 0 ? ' active f_tab' : '' %>"><%= tab.name %><span class="d-none tab-cel"><%= tab.id %></span></p>
@@ -10,21 +11,23 @@
     <% end %>
   </div>
 
- <div class="tab_form edit edit_tog">
+  <!-- タブ編集フォーム -->
+  <div class="tab_form edit_tog">
     <% tabs.each_with_index do |t,i| %>
       <div class="col-12 tab_edit<%= i == 0 ? ' active f_tab' : '' %>">
-        <%= form_with model: t, class: 'row p-2' do |f| %>
-          <div class="form-group mb-1">
+        <%= form_with model: t, local: false, class: 'row p-2' do |f| %>
+          <div class="form-group mb-0">
             <%= f.text_field :name, placeholder: 'タブ名', class: 'mr-2' %>
           </div>
-          <div class="form-group mb-1">
+          <div class="form-group mb-0">
             <%= f.submit '変更', class: 'btn btn-sm btn-info' %>
           </div>
         <% end %>
       </div>
     <% end %>
- </div>
+  </div>
 
+  <!-- キーワード選択フォーム -->
   <%= form_with url: "/search",method: :get do |f| %>
     <div class="panel_area mb-2 overflow-auto" style="height: 45vh;">
       <% tabs.each_with_index do |tab, i| %>

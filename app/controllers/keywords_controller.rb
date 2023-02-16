@@ -7,7 +7,6 @@ class KeywordsController < ApplicationController
     @word_new = Keyword.new(word_params)
     if word.count < 30
       if @word_new.save
-        # redirect_to search_path, notice: "キーワードを登録しました"
       else
         @keyword = params[:keyword]
         redirect_to request.referer, alert: "キーワードの登録に失敗しました"
@@ -29,7 +28,6 @@ class KeywordsController < ApplicationController
     @tabs_count = @tabs.count
     @tab_new = Tab.new
     @words = Keyword.where(tab_id: @tab.id)
-    # redirect_to request.referer, notice: "キーワードを削除しました"
   end
 
 

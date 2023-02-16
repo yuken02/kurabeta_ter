@@ -44,10 +44,10 @@
   <!-- モーダル -->
   <div class="row">
     <div class="modalsearch">
-      <div class="modalsearch-close ml-2">
+      <span class="modalsearch-close ml-2">
         <i class="far fa-times-circle"></i>
-      </div>
-      <div class="modalsearch-contents mx-auto col-md-6">
+      </span>
+      <div class="modalsearch-contents mx-auto col-md-6 keywordform">
         <%= render "searches/keywordform", tabs: @tabs, tabs_count: @tabs_count, tab_new: @tab_new, words: @words %>
       </div>
     </div>
@@ -66,12 +66,15 @@
       $('.modalsearch,.masksearch').fadeIn();
       $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
       $('.f_tab').addClass('active');
+      $(".edit").toggle();
+      $(".modalsearch-contents .tab_form").toggle();
     });
     $('.modalsearch-close,.masksearch').on('click',function(){
       $('.modalsearch,.masksearch').fadeOut();
       $(".edit").toggle(200);
-      $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active');
+      $('.tab_box .tab_btn, .tab_box .tab_panel, .tab_box .tab_edit').removeClass('active');
       $('.f_tab').addClass('active');
+      $(".modalsearch-contents .tab_form").toggle();
     });
   });
 
@@ -89,12 +92,10 @@
   });
 
   // 登録キーワード削除表示・非表示
-  $(function(){
-    $(".edit_btn").click(function() {
-      $(".edit").toggle();
-      $('.f_tab').addClass('active');
-    });
-  });
+  // $(function(){
+  //   $(".edit_btn").click(function() {
+  //     $(".edit").toggle();
+  //     $('.f_tab').addClass('active');
+  //   });
+  // });
 </script>
-</div>
-<!-- /モーダル -->

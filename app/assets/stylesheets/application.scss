@@ -175,7 +175,6 @@ body > footer {
 /*** モーダルウィンドウ ***/
 .modalsearch {
   position: fixed;
-  // background-image: image-url("search-title.png");
   background-size: cover;
   background-repeat: repeat;
   background-color: rgba(255, 255, 255, 0.8);
@@ -200,7 +199,6 @@ body > footer {
   height: 20vh;
   width: auto;
   color: rgb(0, 0, 0);
-  font-family: 'Permanent Marker', cursive;
   font-size: 7vw;
   text-align: center;
 }
@@ -212,7 +210,6 @@ body > footer {
 }
 
 .search-label {
-  font-family: "M PLUS Rounded 1c";
   font-size: 1.2vw;
 }
 
@@ -235,7 +232,6 @@ body > footer {
   margin: 0.5em;
   font-size: 1.2vw;
   background-color: #ff00004f;
-  font-family: 'Permanent Marker', cursive;
 }
 
 .masksearch {
