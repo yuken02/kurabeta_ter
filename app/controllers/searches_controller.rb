@@ -9,6 +9,8 @@ class SearchesController < ApplicationController
     @keyword = params[:keyword]
     search_keyword(@keyword)
 
+    @tabs_count = 0
+
     ### ログイン時
     if user_signed_in?
       @user = current_user
