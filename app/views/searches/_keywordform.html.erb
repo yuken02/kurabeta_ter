@@ -9,7 +9,7 @@
 
   <!-- タブ編集フォーム -->
   <div class="tab_form edit_tog">
-    <% tabs.each_with_index do |t,i| %>
+    <% tabs&.each_with_index do |t,i| %>
       <div class="col-12 tab_edit<%= i == 0 ? ' active f_tab' : '' %>">
         <%= form_with model: t, local: false, class: 'row p-2' do |f| %>
           <div class="form-group mb-0">
