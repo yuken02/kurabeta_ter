@@ -27,7 +27,12 @@ class SearchesController < ApplicationController
       ## タブ
       @tab_new = Tab.new
       @tabs = Tab.where(user_id: current_user.id)
-      @tabs_count = @tabs.count
+      # binding.pry
+      if @tabs.count < 1
+        @tabs_count = 0
+      else
+        @tabs_count = @tabs.count
+      end
 
       ## 登録ワード
       @word_new = Keyword.new
