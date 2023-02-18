@@ -2,7 +2,7 @@
 <a href="/search" class="btn btn-info rounded-pill d-flex align-items-center ml-3"><span>気になるワード<span></span></a>
 <div class="ml-md-5 mt-2">
     <%= form_with url: "/search",method: :get, class: "" do |f| %>
-      <%= f.text_field :keyword %>
+      <%= f.text_field :keyword, required: true %>
       <button title="検索" type="submit" class="px-2">検索</button>
     <% end %>
 </div>
