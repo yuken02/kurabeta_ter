@@ -17,7 +17,7 @@
           <!-- メアドログインユーザー -->
             <p>登録メールアドレス：<%= current_user.email %></p>
             <p>パスワード：●●●●●●</p>
-            <%= link_to edit_user_registration_path(current_user), class: "btn btn-outline-success" do %>
+            <%= link_to edit_user_registration_path(), class: "btn btn-outline-success" do %>
               編集
             <% end %>
           <% end %>

@@ -8,7 +8,7 @@ class TabsController < ApplicationController
       @tab_new.name = 'タブ'
       @tab_new.user_id = current_user.id
       if @tab_new.save
-        redirect_to search_path, notice: "タブを作成しました"
+        redirect_to "/search", notice: "タブを作成しました"
       else
         @keyword = params[:keyword]
         redirect_to request.referer

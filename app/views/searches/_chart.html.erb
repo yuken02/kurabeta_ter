@@ -45,9 +45,19 @@
           ticks: {
             suggestedMin: 0,
             maxTicksLimit: 15,
+            callback: function(label, index, labels) {
+              return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +' 件';
+            }
           }
         }]
       },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data){
+            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +' 件';
+          }
+        }
+      }
     }
   });
 </script>
