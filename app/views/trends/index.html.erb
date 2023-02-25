@@ -20,7 +20,9 @@
                   <a href="<%= trend[:url] %>" class=""> <%= trend[:name] %> </a>
                 </td>
                 <td class="pl-0 tw_tr_count d-flex justify-content-end">
-                  <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
+                  <% if trend.stringify_keys['tweet_volume'].present? %>
+                    <%= trend.stringify_keys['tweet_volume'].to_s(:delimited) %> 件のツイート
+                  <% end %>
                 </td>
                 <td class="px-0" style="width:35px;">
                   <%= link_to search_path(keyword: trend[:name]), class: "btn btn-sm btn-outline-secondary" do %>
@@ -49,7 +51,9 @@
                   <a href="<%= trend[:url] %>" class=""> <%= trend[:name] %> </a>
                 </td>
                 <td class="pl-0 tw_tr_count d-flex justify-content-end">
-                  <%= trend[:tweet_volume] %><% if trend[:tweet_volume] %> 件のツイート<% end %>
+                  <% if trend.stringify_keys['tweet_volume'].present? %>
+                    <%= trend.stringify_keys['tweet_volume'].to_s(:delimited) %> 件のツイート
+                  <% end %>
                 </td>
                 <td class="px-0" style="width:35px;">
                   <a class="btn btn-sm btn-outline-secondary" href="/search?keyword=<%= trend[:name] %>"><i class="fa fa-chart-line"></i></a>
